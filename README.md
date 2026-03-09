@@ -68,7 +68,7 @@ curl https://frontend-production-0907.up.railway.app > curl-result.txt
 
 ### 7. Скріншот запиту на індексацію
 
-![GSC indexing](images/gsc-indexing.png)
+![GSC indexing](images/gsc_indexed.png)
 
 ### 8. Що побачить Google crawler і чому це важливо
 
