@@ -35,7 +35,7 @@ cd apps/frontend && npm install && npm run dev  # :3000
 
 ### 3. Скріншот успішного deploy на Railway
 
-![Railway deploy](images/railway-deploy.png)
+![Railway deploy](images/services_online.png)
 
 ### 4. Вміст curl-result.txt та пояснення
 
@@ -64,7 +64,7 @@ curl https://frontend-production-0907.up.railway.app > curl-result.txt
 
 ### 6. Скріншот верифікації в Google Search Console
 
-![GSC verification](images/gsc-verification.png)
+![GSC verification](images/gsc_verified.png)
 
 ### 7. Скріншот запиту на індексацію
 
