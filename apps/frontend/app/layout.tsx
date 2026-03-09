@@ -26,7 +26,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </nav>
           </div>
         </header>
-        <main className="container">{children}</main>
+        <main>
+          <div className="container">{children}</div>
+        </main>
         <footer>
           <p>© 2026 IT Blog. Всі права захищені.</p>
         </footer>
