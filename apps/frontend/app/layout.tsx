@@ -7,6 +7,9 @@ export const metadata: Metadata = {
     template: '%s | IT Blog',
   },
   description: 'Актуальні новини та статті про JavaScript, Backend, AI, кібербезпеку та інші IT технології.',
+  verification: {
+    google: 'ZKBuBgRJNf1ffu8iskDb1qSwxRRTFGRy4hpk3sTlkLo',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
