@@ -6,7 +6,7 @@ export async function getArticles(params?: { page?: number; category?: string })
   if (params?.category) query.set('category', params.category);
 
   const res = await fetch(`${API_URL}/api/articles?${query}`, { next: { revalidate: 60 } });
-  if (!res.ok) throw new Error('Failed to fetch articles');
+  if (!res.ok) return { data: [], meta: { total: 0, page: 1, perPage: 10, totalPages: 0 } };
   return res.json();
 }
 
@@ -24,7 +24,7 @@ export async function getRelatedArticles(slug: string) {
 
 export async function getCategories() {
   const res = await fetch(`${API_URL}/api/categories`, { next: { revalidate: 3600 } });
-  if (!res.ok) throw new Error('Failed to fetch categories');
+  if (!res.ok) return { data: [] };
   return res.json();
 }
 
