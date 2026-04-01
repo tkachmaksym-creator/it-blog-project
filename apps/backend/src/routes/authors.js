@@ -4,14 +4,22 @@ const router = express.Router();
 router.get('/:slug', async (req, res) => {
   const db = req.app.locals.db;
   try {
-    const result = await db.query(
-      'SELECT id, name, slug, bio, avatar_url, created_at FROM users WHERE slug = $1',
-      [req.params.slug]
-    );
-    if (!result.rows.length) {
+    const [authorResult, countResult] = await Promise.all([
+      db.query(
+        'SELECT id, name, slug, bio, avatar_url, linkedin_url, github_url, created_at FROM users WHERE slug = $1',
+        [req.params.slug]
+      ),
+      db.query(
+        `SELECT COUNT(*) FROM articles a LEFT JOIN users u ON a.author_id = u.id WHERE u.slug = $1 AND a.status = 'published'`,
+        [req.params.slug]
+      ),
+    ]);
+    if (!authorResult.rows.length) {
       return res.status(404).json({ error: { code: 'NOT_FOUND', message: 'Author not found' } });
     }
-    res.json({ data: result.rows[0] });
+    const author = authorResult.rows[0];
+    author.articles_count = parseInt(countResult.rows[0].count);
+    res.json({ data: author });
   } catch (err) {
     res.status(500).json({ error: { code: 'SERVER_ERROR', message: err.message } });
   }

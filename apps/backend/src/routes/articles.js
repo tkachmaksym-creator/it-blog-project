@@ -46,6 +46,7 @@ router.get('/:slug', async (req, res) => {
   try {
     const result = await db.query(
       `SELECT a.*, u.name as author_name, u.slug as author_slug, u.bio as author_bio,
+              u.avatar_url as author_avatar_url,
               c.name as category_name, c.slug as category_slug
        FROM articles a
        LEFT JOIN users u ON a.author_id = u.id

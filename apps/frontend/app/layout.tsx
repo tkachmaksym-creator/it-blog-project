@@ -26,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <a href="/categories/backend">Backend</a>
               <a href="/categories/ai-ml">AI & ML</a>
               <a href="/categories/cybersecurity">Кібербезпека</a>
+              <a href="/about">Про нас</a>
             </nav>
           </div>
         </header>

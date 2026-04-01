@@ -27,13 +27,40 @@ export default async function AuthorPage({ params }: Props) {
 
   return (
     <div style={{ maxWidth: 800, margin: '0 auto' }}>
-      <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center', marginBottom: '2rem', background: 'white', padding: '1.5rem', borderRadius: 8 }}>
-        {author.avatar_url && (
-          <img src={author.avatar_url} alt={author.name} style={{ width: 80, height: 80, borderRadius: '50%', objectFit: 'cover' }} />
-        )}
-        <div>
-          <h1 style={{ marginBottom: '0.5rem' }}>{author.name}</h1>
-          {author.bio && <p style={{ color: '#6b7280' }}>{author.bio}</p>}
+      {/* Профіль автора */}
+      <div style={{ background: 'white', borderRadius: 8, padding: '1.5rem', marginBottom: '2rem' }}>
+        <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
+          {author.avatar_url && (
+            <img
+              src={author.avatar_url}
+              alt={author.name}
+              style={{ width: 96, height: 96, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
+            />
+          )}
+          <div style={{ flex: 1 }}>
+            <h1 style={{ marginBottom: '0.5rem', marginTop: 0 }}>{author.name}</h1>
+            {author.bio && (
+              <p style={{ color: '#374151', marginBottom: '0.75rem' }}>{author.bio}</p>
+            )}
+
+            {/* Соціальні посилання */}
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '0.75rem' }}>
+              {author.linkedin_url && (
+                <a href={author.linkedin_url} target="_blank" rel="noopener noreferrer" style={{ color: '#1d4ed8', fontSize: '0.9rem' }}>
+                  LinkedIn
+                </a>
+              )}
+              {author.github_url && (
+                <a href={author.github_url} target="_blank" rel="noopener noreferrer" style={{ color: '#1d4ed8', fontSize: '0.9rem' }}>
+                  GitHub
+                </a>
+              )}
+            </div>
+
+            <p style={{ fontSize: '0.85rem', color: '#6b7280', margin: 0 }}>
+              Опублікованих статей: <strong>{author.articles_count ?? articlesData.meta?.total ?? 0}</strong>
+            </p>
+          </div>
         </div>
       </div>
 
@@ -42,7 +69,7 @@ export default async function AuthorPage({ params }: Props) {
         {articlesData.data?.map((article: { slug: string; title: string; excerpt?: string }) => (
           <Link key={article.slug} href={`/articles/${article.slug}`} style={{ background: 'white', padding: '1rem', borderRadius: 8, display: 'block' }}>
             <h3 style={{ marginBottom: '0.5rem', color: '#1d4ed8' }}>{article.title}</h3>
-            {article.excerpt && <p style={{ fontSize: '0.9rem', color: '#6b7280' }}>{article.excerpt.slice(0, 100)}...</p>}
+            {article.excerpt && <p style={{ fontSize: '0.9rem', color: '#6b7280', margin: 0 }}>{article.excerpt.slice(0, 120)}...</p>}
           </Link>
         ))}
       </div>
