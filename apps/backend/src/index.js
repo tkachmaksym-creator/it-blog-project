@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
 
+const { runMigrations } = require('./migrate');
 const articlesRouter = require('./routes/articles');
 const categoriesRouter = require('./routes/categories');
 const tagsRouter = require('./routes/tags');
@@ -46,6 +47,13 @@ app.get('/api/search', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
-});
+runMigrations(pool)
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Backend running on http://localhost:${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('Migration failed, shutting down:', err.message);
+    process.exit(1);
+  });
