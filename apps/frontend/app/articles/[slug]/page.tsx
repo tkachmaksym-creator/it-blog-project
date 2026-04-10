@@ -54,53 +54,49 @@ export default async function ArticlePage({ params }: Props) {
       </div>
 
       {article.cover_url && (
-        <img
-          src={article.cover_url}
-          alt={article.title}
-          style={{ width: '100%', borderRadius: 8, marginBottom: '1.5rem' }}
-        />
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+          <img
+            src={article.cover_url}
+            alt={article.title}
+            style={{ 
+              width: '240px', 
+              height: '240px', 
+              objectFit: 'cover',
+              imageRendering: 'pixelated',
+              borderTop: '2px solid #808080',
+              borderLeft: '2px solid #808080',
+              borderRight: '2px solid #ffffff',
+              borderBottom: '2px solid #ffffff',
+              boxShadow: '1px 1px 0px #000'
+            }}
+          />
+        </div>
       )}
 
       <div style={{ lineHeight: 1.8 }} dangerouslySetInnerHTML={{ __html: article.content }} />
 
       {/* Блок автора (E-E-A-T) */}
       {article.author_name && (
-        <div style={{
-          marginTop: '2.5rem',
-          borderTop: '1px solid #e5e7eb',
-          paddingTop: '1.5rem',
-          background: '#f9fafb',
-          borderRadius: 8,
-          padding: '1.25rem',
-        }}>
-          <p style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: '#9ca3af', marginBottom: '0.75rem', letterSpacing: '0.05em' }}>
-            Про автора
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-            {article.author_avatar_url && (
-              <img
-                src={article.author_avatar_url}
-                alt={article.author_name}
-                style={{ width: 56, height: 56, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
-              />
-            )}
-            <div>
-              <Link href={`/authors/${article.author_slug}`} style={{ fontWeight: 600, color: '#111827', fontSize: '1rem' }}>
-                {article.author_name}
-              </Link>
-              {article.author_bio && (
-                <p style={{ margin: '0.25rem 0 0', color: '#6b7280', fontSize: '0.9rem' }}>
-                  {article.author_bio}
-                </p>
-              )}
-              <div style={{ marginTop: '0.5rem', fontSize: '0.8rem', color: '#9ca3af' }}>
-                {article.published_at && (
-                  <span>Опубліковано: {formatDate(article.published_at)}</span>
-                )}
-                {article.updated_at && article.updated_at !== article.published_at && (
-                  <span style={{ marginLeft: '1rem' }}>Оновлено: {formatDate(article.updated_at)}</span>
-                )}
+        <div className="author-block">
+          {article.author_avatar_url && (
+            <img src={article.author_avatar_url} alt={article.author_name} />
+          )}
+          <div>
+            <Link href={`/authors/${article.author_slug}`} className="author-block-name">
+              {article.author_name}
+            </Link>
+            {article.author_bio && (
+              <div className="author-block-bio">
+                {article.author_bio}
               </div>
+            )}
+            <div className="author-block-dates">
+              {article.published_at && (
+                <span>Опубліковано: {formatDate(article.published_at)}</span>
+              )}
+              {article.updated_at && article.updated_at !== article.published_at && (
+                <span style={{ marginLeft: '12px' }}>Оновлено: {formatDate(article.updated_at)}</span>
+              )}
             </div>
           </div>
         </div>

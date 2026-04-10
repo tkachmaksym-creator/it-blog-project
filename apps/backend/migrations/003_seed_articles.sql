@@ -2,7 +2,7 @@
 UPDATE users SET
   name        = 'Максим Ткач',
   bio         = 'Розробник та дослідник у сфері веб-технологій. Захоплюється JavaScript, архітектурою API та SEO-оптимізацією. Веде IT Blog як навчально-практичний проєкт.',
-  avatar_url  = 'https://ui-avatars.com/api/?name=Maksym+Tkach&background=1d4ed8&color=fff&size=200',
+  avatar_url  = '/images/maksym-avatar.jpg',
   linkedin_url = 'https://linkedin.com/in/tkachmaksym',
   github_url   = 'https://github.com/tkachmaksym-creator'
 WHERE slug = 'admin';
@@ -81,7 +81,7 @@ INSERT INTO articles (title, slug, excerpt, content, author_id, category_id, sta
 <p><strong>Рішення:</strong> bcrypt/argon2 для паролів, HTTPS скрізь, не зберігати чутливі дані без крайньої необхідності.</p>
 <h2>A03 — Injection (SQL, NoSQL, Command)</h2>
 <p>Класика. Якщо дані від користувача потрапляють у SQL-запит без санітизації — це SQL-ін''єкція.</p>
-<pre><code>-- Небезпечно:\nSELECT * FROM users WHERE email = ''' + userInput + '''\n\n-- Безпечно (параметризований запит):\nSELECT * FROM users WHERE email = $1</code></pre>
+<pre><code>-- Небезпечно:\nSELECT * FROM users WHERE email = '''' + userInput + ''''\n\n-- Безпечно (параметризований запит):\nSELECT * FROM users WHERE email = $1</code></pre>
 <h2>Висновок</h2>
 <p>Знання OWASP Top 10 — мінімальний базис для будь-якого веброзробника. Більшість вразливостей можна уникнути дотримуючись базових принципів безпечного кодування.</p>',
   1, 4, 'published', '2026-04-05 10:00:00', '2026-04-05 10:00:00',

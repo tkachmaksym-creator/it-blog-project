@@ -9,6 +9,7 @@ const categoriesRouter = require('./routes/categories');
 const tagsRouter = require('./routes/tags');
 const authorsRouter = require('./routes/authors');
 const authRouter = require('./routes/auth');
+const imagesRouter = require('./routes/images');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -24,6 +25,7 @@ app.use('/api/categories', categoriesRouter);
 app.use('/api/tags', tagsRouter);
 app.use('/api/authors', authorsRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/images', imagesRouter);
 
 app.get('/api/search', async (req, res) => {
   const { q } = req.query;

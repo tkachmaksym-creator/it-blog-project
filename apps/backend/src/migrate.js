@@ -33,19 +33,22 @@ async function runMigrations(pool) {
     const sql = fs.readFileSync(path.join(MIGRATIONS_DIR, file), 'utf8');
     console.log(`[migrate] applying: ${file}`);
 
-    await pool.query('BEGIN');
+    const client = await pool.connect();
     try {
-      await pool.query(sql);
-      await pool.query(
+      await client.query('BEGIN');
+      await client.query(sql);
+      await client.query(
         'INSERT INTO schema_migrations (filename) VALUES ($1)',
         [file]
       );
-      await pool.query('COMMIT');
+      await client.query('COMMIT');
       console.log(`[migrate] done: ${file}`);
     } catch (err) {
-      await pool.query('ROLLBACK');
+      await client.query('ROLLBACK');
       console.error(`[migrate] FAILED: ${file}`, err.message);
       throw err;
+    } finally {
+      client.release();
     }
   }
 
