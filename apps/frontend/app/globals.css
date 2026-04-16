@@ -291,6 +291,28 @@ main {
 }
 .win-box-body { padding: 10px; }
 
+.home-intro {
+  background: #c0c0c0;
+}
+
+.home-intro .win-box-title h1 {
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.home-intro .win-box-body {
+  background: #fffff0;
+  color: #000000;
+  font-size: 12px;
+  border-top: 1px solid #808080;
+}
+
+.home-intro p {
+  margin: 0;
+}
+
 /* ── CATEGORY FILTER ── */
 .category-filter {
   display: flex;
