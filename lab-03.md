@@ -47,7 +47,7 @@
 | 12 | створити sitemap next.js | transactional | Практична дія в коді |
 | 13 | next.js vs nuxt | commercial | Порівняння фреймворків |
 | 14 | node.js vs bun | commercial | Вибір runtime для backend |
-| 15 | macbook air m4 для програмування | commercial | Порівняння/оцінка перед покупкою |
+| 15 | macbook neo для навчання | commercial | Порівняння/оцінка перед покупкою |
 | 16 | postgresql vs mysql | commercial | Порівняння баз даних |
 | 17 | що таке y2k дизайн | informational | Пояснення терміну |
 | 18 | git workflow для команди | informational | Навчальний запит |
@@ -63,7 +63,7 @@
 |---------------|--------------------------------------|------------------------|
 | `next.js ssr` | що таке SSR, чим SSR відрізняється від SSG, чи потрібен SSR для SEO | next.js ssr seo, next.js app router seo, server side rendering react |
 | `node.js vs bun` | що швидше Node.js чи Bun, чи готовий Bun до production, чим Bun відрізняється від npm | bun runtime, node.js alternatives, bun vs deno |
-| `macbook для програмування` | який MacBook взяти студенту, скільки RAM потрібно програмісту, чи підходить MacBook Air для Docker | macbook air m4 programming, laptop for coding students, macbook air vs pro developer |
+| `macbook для навчання` | який MacBook взяти студенту, скільки RAM потрібно студенту, чи підходить MacBook Neo для навчання | macbook neo 2026, laptop for coding students, macbook neo vs air |
 
 ---
 
@@ -107,7 +107,7 @@
 | 34 | веб безпека для розробників | informational | 100-1K | Medium | cybersecurity-owasp | `/categories/cybersecurity` | 1 | Категорійний запит |
 | 35 | xss атака що це | informational | 100-1K | Medium | cybersecurity-owasp | `/categories/cybersecurity` | 2 | Майбутня стаття |
 | 36 | як захистити api | transactional | 100-1K | Medium | cybersecurity-owasp | `/categories/cybersecurity` | 2 | Практичний інтент |
-| 37 | macbook air m4 для програмування | commercial | 100-1K | Medium | dev-tools-gadgets | `/articles/apple-m4-macbook-air-review-students` | 1 | Є релевантна стаття |
+| 37 | macbook neo для навчання | commercial | 100-1K | Medium | dev-tools-gadgets | `/articles/chy-varto-braty-macbook-neo` | 1 | Є релевантна стаття |
 | 38 | ноутбук для програміста | commercial | 1K-10K | High | dev-tools-gadgets | `/categories/gadgets` | 1 | Комерційний запит |
 | 39 | git workflow для команди | informational | 100-1K | Medium | dev-tools-gadgets | `/articles/git-workflow-branches-pr-code-review` | 1 | Є релевантна стаття |
 | 40 | github flow vs git flow | commercial | 100-1K | Medium | dev-tools-gadgets | `/articles/git-workflow-branches-pr-code-review` | 2 | Порівняльний запит |
@@ -116,13 +116,13 @@
 
 Оскільки у звіті використано Markdown-формат, частотність подана діапазонами: `10-100`, `100-1K`, `1K-10K`. Для молодого
 сайту пріоритет отримали long-tail та mid-tail запити з нижчою конкуренцією: `next.js app router seo`,
-`macbook air m4 для програмування`, `git workflow для команди`, `vector database для rag`.
+`macbook neo для навчання`, `git workflow для команди`, `vector database для rag`.
 
 Для Google Trends доцільно порівнювати:
 
 - `next.js` vs `nuxt` vs `sveltekit`;
 - `node.js` vs `bun` vs `deno`;
-- `macbook air m4` vs `macbook pro m4`;
+- `macbook neo` vs `macbook air`;
 - `chatgpt` vs `rag` vs `llm`.
 
 Очікувана сезонність: запити про ноутбуки та навчання зростають перед початком навчального року, а запити про нові
@@ -178,7 +178,7 @@
 | `/articles/nodejs-vs-bun-2025` | Node.js vs Bun | backend | `node.js vs bun` | `/categories/backend` | `/categories/backend` |
 | `/articles/what-is-rag-retrieval-augmented-generation` | Що таке RAG | ai-ml | `що таке rag` | `/categories/ai-ml` | `/categories/ai-ml` |
 | `/articles/owasp-top-10-2025-web-vulnerabilities` | OWASP Top 10 2025 | cybersecurity | `owasp top 10` | `/categories/cybersecurity` | `/categories/cybersecurity` |
-| `/articles/apple-m4-macbook-air-review-students` | Apple M4 MacBook Air | gadgets | `macbook air m4 для програмування` | `/categories/gadgets` | `/categories/gadgets` |
+| `/articles/chy-varto-braty-macbook-neo` | Чи варто брати MacBook Neo | gadgets | `macbook neo для навчання` | `/categories/gadgets` | `/`, `/categories/gadgets` |
 | `/articles/git-workflow-branches-pr-code-review` | Git для команди | tools | `git workflow для команди` | `/categories/tools` | `/categories/tools` |
 
 ### 4.4 Рівень 3 - допоміжні сторінки
@@ -208,7 +208,7 @@
 | `/categories/backend` | `/articles/nodejs-vs-bun-2025` | article listing | `Node.js vs Bun` |
 | `/categories/ai-ml` | `/articles/what-is-rag-retrieval-augmented-generation` | article listing | `Що таке RAG` |
 | `/categories/cybersecurity` | `/articles/owasp-top-10-2025-web-vulnerabilities` | article listing | `OWASP Top 10` |
-| `/categories/gadgets` | `/articles/apple-m4-macbook-air-review-students` | article listing | `Apple M4 MacBook Air` |
+| `/categories/gadgets` | `/articles/chy-varto-braty-macbook-neo` | article listing | `Чи варто брати MacBook Neo` |
 | `/categories/tools` | `/articles/git-workflow-branches-pr-code-review` | article listing | `Git для команди` |
 | `/articles/y2k-windows-style-review` | `/authors/oleksii-ivanov` | author link | `Олексій Іванов` |
 | `/articles/why-ipz-is-the-best` | `/authors/admin` | author link | `Максим Ткач` |

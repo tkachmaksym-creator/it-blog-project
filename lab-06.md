@@ -29,12 +29,12 @@
 
 | URL | Тип сторінки | Status code | Indexability | Canonical | Meta robots | H1 | Проблема |
 |-----|--------------|-------------|--------------|-----------|-------------|----|----------|
-| `/` | home | 200 | Indexable | потребує self-canonical | index,follow | Немає явного H1 на головній | Додати/перевірити H1 |
+| `/` | home | 200 | Indexable | default/self canonical | index,follow | `ІПЗ-педія: IT-блог про програмування, AI, безпеку та гаджети` | OK |
 | `/about` | static | 200 | Indexable | default canonical | index,follow | `Що таке ІПЗ-педія?` | OK |
 | `/articles/y2k-windows-style-review` | article | 200 | Indexable | додано canonical | index,follow | `Огляд старих добрих Windows-стилів (Y2K)` | CLS до виправлення |
 | `/articles/why-ipz-is-the-best` | article | 200 | Indexable | додано canonical | index,follow | `Чому ІФТКН найкращий для ІПЗ` | OK |
-| `/categories/programming` | category | 200 | Indexable | додано canonical | index,follow | Непрямий заголовок категорії | Покращити title/H1 категорії |
-| `/categories/backend` | category | 200 | Indexable | додано canonical | index,follow | Непрямий заголовок категорії | Покращити title/H1 категорії |
+| `/categories/programming` | category | 200 | Indexable | додано canonical | index,follow | `Категорія: Програмування` | OK |
+| `/categories/backend` | category | 200 | Indexable | додано canonical | index,follow | `Категорія: Backend` | OK |
 | `/authors/admin` | author | 200 | Indexable | додано canonical | index,follow | `Максим Ткач` | OK |
 | `/authors/oleksii-ivanov` | author | 200 | Indexable | додано canonical | index,follow | `Олексій Іванов` | OK |
 | `/sitemap.xml` | technical | 200 | crawlable | n/a | n/a | n/a | OK після виправлення |
@@ -71,7 +71,7 @@
 | sitemap | `/authors` | URL був у sitemap, але listing-сторінки немає | High | Прибрано з sitemap |
 | schema | `/articles/[slug]` | Не було Article JSON-LD | Medium | Додано `Article` JSON-LD |
 | schema | `/articles/[slug]` | Не було BreadcrumbList JSON-LD | Medium | Додано `BreadcrumbList` JSON-LD |
-| CWV | `/articles/y2k-windows-style-review` | CLS 0.237 mobile / 0.228 desktop | High | Додано `width`/`height` для hero image |
+| CWV | `/articles/y2k-windows-style-review` | CLS 0.237 mobile / 0.228 desktop | High | Додано `next/image`, `width`/`height` і стабільний блок hero image |
 | robots | `/robots.txt` | Було `Disallow: /private/`, але адмінка за `/admin/` | Medium | Замінено на `Disallow: /admin/` |
 
 ---
@@ -87,6 +87,7 @@
 | 5 | Не було Article JSON-LD | Google гірше розуміє тип сторінки | Додано `Article` structured data | Rich Results Test після деплою | Done |
 | 6 | Не було BreadcrumbList JSON-LD | Немає структурованої ієрархії | Додано breadcrumbs + JSON-LD | Rich Results Test після деплою | Done |
 | 7 | CLS на сторінці статті | Поганий page experience | Додано `width`/`height` для cover image | PageSpeed re-test після деплою | Done in code |
+| 8 | Немає явного H1 на головній і категоріях | Слабший on-page сигнал | Додано видимий H1 на `/` і `/categories/[slug]` | HTML після деплою | Done in code |
 
 ---
 
@@ -136,7 +137,7 @@
 
 | Зміна | Метрика | Що зроблено | Очікуваний ефект |
 |-------|---------|-------------|------------------|
-| Фіксовані `width`/`height` для cover image | CLS | Додано атрибути `width={800}` і `height={450}` | Менше layout shift |
+| Фіксовані `width`/`height` для cover image | CLS | Додано `next/image`, `width`/`height`, `sizes` і стабільний контейнер | Менше layout shift |
 | Canonical metadata | SEO/indexing | Додано `alternates.canonical` | Менше дублювання |
 | JSON-LD Article | Rich results / understanding | Додано structured data | Краще розуміння сторінки |
 | BreadcrumbList JSON-LD | UX/SEO | Додано breadcrumbs + schema | Краща структура |
@@ -270,7 +271,7 @@
     щоб не роздувати індекс.
 
 11. **Backlog із 5 задач.**  
-    Зменшити CLS, додати H1 на головну, розширити статті, додати більше contextual links, отримати перші релевантні
+    Повторно перевірити CLS після деплою, розширити статті, додати більше contextual links, отримати перші релевантні
     backlinks.
 
 12. **Як утримувати CWV без регресій.**  

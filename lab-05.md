@@ -33,6 +33,7 @@ https://frontend-production-0907.up.railway.app
 | `/categories/tools` | category | Інструменти | header/nav | article links | linked |
 | `/articles/y2k-windows-style-review` | article | Огляд Windows-стилів | home/category | author/category/related | linked |
 | `/articles/why-ipz-is-the-best` | article | Чому ІФТКН найкращий для ІПЗ | home/category | author/category/about | linked |
+| `/articles/chy-varto-braty-macbook-neo` | article | Чи варто брати MacBook Neo | home/category | author/category/related | linked |
 | `/authors/admin` | author | Максим Ткач | article author link | articles list | linked |
 | `/authors/oleksii-ivanov` | author | Олексій Іванов | article author link | articles list | linked |
 | `/sitemap.xml` | technical | Sitemap | robots/GSC | URL list | linked |
@@ -49,6 +50,7 @@ https://frontend-production-0907.up.railway.app
 |----------|-----------------------|-----------|--------|
 | `/articles/y2k-windows-style-review` | головна, категорія programming | Є посилання з головної/категорії | linked |
 | `/articles/why-ipz-is-the-best` | головна, категорія programming | Є посилання з головної/категорії | linked |
+| `/articles/chy-varto-braty-macbook-neo` | головна, категорія gadgets | Є посилання після публікації статті | linked |
 | `/authors/admin` | блок автора у статті | Є посилання зі статті | linked |
 | `/authors/oleksii-ivanov` | блок автора у статті | Є посилання зі статті | linked |
 | `/about` | header/footer/sidebar | Є посилання | linked |
@@ -123,6 +125,7 @@ https://frontend-production-0907.up.railway.app
 | `/` | `/articles/why-ipz-is-the-best` | назва статті | contextual | article listing | high |
 | `/categories/programming` | `/articles/y2k-windows-style-review` | `Огляд старих добрих Windows-стилів` | contextual | article listing | high |
 | `/categories/programming` | `/articles/why-ipz-is-the-best` | `Чому ІФТКН найкращий для ІПЗ` | contextual | article listing | high |
+| `/categories/gadgets` | `/articles/chy-varto-braty-macbook-neo` | `Чи варто брати MacBook Neo` | contextual | article listing | high |
 | `/articles/y2k-windows-style-review` | `/categories/programming` | `Програмування` | breadcrumb | top of article | high |
 | `/articles/y2k-windows-style-review` | `/authors/oleksii-ivanov` | `Олексій Іванов` | author | article meta + author block | high |
 | `/articles/y2k-windows-style-review` | `/articles/why-ipz-is-the-best` | назва схожої статті | related | related articles | medium |

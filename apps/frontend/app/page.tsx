@@ -10,6 +10,7 @@ export default async function HomePage() {
   return (
     <div className="layout-with-sidebar">
       <div className="layout-main">
+        <h1 className="page-heading">ІПЗ-педія: IT-блог про програмування, AI, безпеку та гаджети</h1>
         <ArticleList articles={articles} />
 
       {meta && meta.totalPages > 1 && (

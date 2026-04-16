@@ -390,6 +390,14 @@ main {
 }
 .article-card:hover h2 { color: #cc0000; }
 
+.page-heading {
+  font-size: 1.2rem;
+  color: #000080;
+  border-bottom: 3px solid #ff6600;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
 .article-meta {
   font-size: 11px;
   color: #808080;

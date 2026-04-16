@@ -45,6 +45,7 @@ export default async function CategoryPage({ params }: Props) {
         <span>Розділ: {categoryTitle}</span>
       </div>
       <div className="win-box-body">
+        <h1 className="page-heading">Категорія: {categoryTitle}</h1>
         <ArticleList articles={articles} />
       </div>
     </div>
