@@ -13,14 +13,13 @@ const navItems = [
 export default function Navbar() {
   return (
     <nav className="navbar">
-      <details className="nav-menu">
-        <summary className="nav-toggle-btn">Меню</summary>
-        <div className="nav-links">
-          {navItems.map((item) => (
-            <Link key={item.href} href={item.href}>{item.label}</Link>
-          ))}
-        </div>
-      </details>
+      <input id="nav-menu-toggle" className="nav-menu-toggle" type="checkbox" aria-label="Відкрити меню" />
+      <label className="nav-toggle-btn" htmlFor="nav-menu-toggle">Меню</label>
+      <div className="nav-links">
+        {navItems.map((item) => (
+          <Link key={item.href} href={item.href}>{item.label}</Link>
+        ))}
+      </div>
     </nav>
   );
 }

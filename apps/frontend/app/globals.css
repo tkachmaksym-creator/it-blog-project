@@ -107,13 +107,7 @@ header {
   padding: 1px;
   position: relative;
 }
-.nav-menu {
-  display: block;
-}
-.nav-menu > summary {
-  list-style: none;
-}
-.nav-menu > summary::-webkit-details-marker {
+.nav-menu-toggle {
   display: none;
 }
 @media (max-width: 850px) {
@@ -212,7 +206,7 @@ header {
     box-shadow: 4px 4px 0 rgba(0,0,0,0.5); /* Stronger Win9x shadow */
   }
   
-  .nav-menu[open] .nav-links {
+  .nav-menu-toggle:checked ~ .nav-links {
     display: flex;
   }
   
