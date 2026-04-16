@@ -6,6 +6,87 @@ export const metadata: Metadata = {
     'ІПЗ-педія — незалежне україномовне онлайн-видання про комп’ютерні науки. Засноване студентами ІПЗ в Інституті ІФТКН ЧНУ.',
 };
 
+const teamMembers = [
+  {
+    name: 'Максим Ткач',
+    role: 'Творець платформи та технічний спеціаліст',
+    avatar: '/images/maksym-avatar.jpg',
+    bio:
+      'Студент спеціальності ІПЗ в ІФТКН ЧНУ, відповідальний за архітектуру платформи, Next.js frontend, Express API, PostgreSQL, SEO-налаштування та технічну якість проєкту.',
+    links: [
+      { label: 'GitHub', href: 'https://github.com/tkachmaksym-creator' },
+      { label: 'LinkedIn', href: 'https://linkedin.com/in/tkachmaksym' },
+    ],
+  },
+  {
+    name: 'Олексій Іванов',
+    role: 'Автор матеріалів про веб-дизайн та користувацький досвід',
+    avatar: '/images/alex-avatar.jpg',
+    bio:
+      'Допомагає з редакційними матеріалами про інтерфейси, ретро-естетику, UX-патерни та візуальну подачу технологічного контенту.',
+    links: [
+      { label: 'GitHub', href: 'https://github.com' },
+    ],
+  },
+  {
+    name: 'Максим Яцко',
+    role: 'Редакційний асистент і координатор тем',
+    bio:
+      'Допомагає узгоджувати теми матеріалів, перевіряти зрозумілість формулювань і підтримувати єдиний стиль навчального блогу.',
+    links: [],
+  },
+];
+
+function TeamMemberCard({ member }: { member: (typeof teamMembers)[number] }) {
+  return (
+    <div className="author-block">
+      {member.avatar ? (
+        <img src={member.avatar} alt={member.name} style={{ objectFit: 'cover' }} />
+      ) : (
+        <div
+          aria-label={`Плейсхолдер аватара: ${member.name}`}
+          style={{
+            width: 72,
+            height: 72,
+            border: '2px solid #000080',
+            background: '#dcdcdc',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: '#000080',
+            fontWeight: 'bold',
+            flexShrink: 0,
+          }}
+        >
+          МЯ
+        </div>
+      )}
+      <div className="author-block-details">
+        <h3 className="author-block-name">{member.name}</h3>
+        <p style={{ fontSize: '0.8rem', fontWeight: 'bold', color: '#555', margin: '0 0 8px 0' }}>
+          {member.role}
+        </p>
+        <p className="author-block-bio">{member.bio}</p>
+        {member.links.length > 0 && (
+          <div style={{ marginTop: 8 }}>
+            {member.links.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                style={{ fontSize: '12px', color: '#0000ee', marginRight: 10 }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function AboutPage() {
   return (
     <div style={{ margin: '12px 0' }}>
@@ -43,24 +124,9 @@ export default function AboutPage() {
           </ul>
 
           <h2 style={{ fontSize: '1.1rem', color: '#000080', marginBottom: 12, marginTop: 20 }}>Команда</h2>
-          <div className="author-block">
-            <img 
-              src="/images/maksym-avatar.jpg" 
-              alt="Максим Ткач" 
-              style={{ objectFit: 'cover' }} 
-            />
-            <div className="author-block-details">
-              <h3 className="author-block-name">Максим Ткач</h3>
-              <p style={{ fontSize: '0.8rem', fontWeight: 'bold', color: '#555', margin: '0 0 8px 0' }}>Засновник та головний редактор</p>
-              <p className="author-block-bio">
-                Студент спеціальності ІПЗ в Інституті ІФТКН, ентузіаст веб-технологій та SEO. Автор більшості матеріалів на сайті та ідейний натхненник проєкту «ІПЗ-педія».
-              </p>
-              <div style={{ marginTop: 8 }}>
-                <a href="https://github.com/tkachmaksym-creator" style={{ fontSize: '12px', color: '#0000ee', marginRight: 10 }}>GitHub</a>
-                <a href="https://linkedin.com" style={{ fontSize: '12px', color: '#0000ee' }}>LinkedIn</a>
-              </div>
-            </div>
-          </div>
+          {teamMembers.map((member) => (
+            <TeamMemberCard key={member.name} member={member} />
+          ))}
 
           <div style={{ background: '#f0f0f0', border: '1px solid #808080', padding: 8, marginTop: 16, fontSize: 12, color: '#333' }}>
             <strong>Зауваження:</strong> Цей сайт знаходиться у стадії розробки. Якщо ви знайшли помилку або маєте пропозиції — пишіть нам на GitHub!
