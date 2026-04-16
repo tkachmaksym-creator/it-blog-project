@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://frontend-production-0907.up.railway.app';
+
 interface Props {
   params: { slug: string };
 }
@@ -13,6 +15,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: data.data.name,
     description: data.data.bio,
+    alternates: {
+      canonical: `/authors/${params.slug}`,
+    },
+    openGraph: {
+      title: data.data.name,
+      description: data.data.bio,
+      url: `${BASE_URL}/authors/${params.slug}`,
+      type: 'profile',
+      images: data.data.avatar_url ? [data.data.avatar_url] : undefined,
+    },
   };
 }
 

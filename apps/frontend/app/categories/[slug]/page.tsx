@@ -2,6 +2,8 @@ import { getCategoryArticles } from '@/lib/api';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://frontend-production-0907.up.railway.app';
+
 interface Props {
   params: { slug: string };
 }
@@ -10,6 +12,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `Категорія: ${params.slug}`,
     description: `Статті у категорії ${params.slug} на IT Blog`,
+    alternates: {
+      canonical: `/categories/${params.slug}`,
+    },
+    openGraph: {
+      title: `Категорія: ${params.slug}`,
+      description: `Статті у категорії ${params.slug} на IT Blog`,
+      url: `${BASE_URL}/categories/${params.slug}`,
+      type: 'website',
+    },
   };
 }
 

@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://frontend-production-0907.up.railway.app';
+
 interface Props {
   params: { slug: string };
 }
@@ -15,6 +17,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: article.meta_title || article.title,
     description: article.meta_description || article.excerpt,
+    alternates: {
+      canonical: `/articles/${article.slug}`,
+    },
+    openGraph: {
+      title: article.meta_title || article.title,
+      description: article.meta_description || article.excerpt,
+      type: 'article',
+      url: `${BASE_URL}/articles/${article.slug}`,
+      images: article.cover_url ? [article.cover_url] : undefined,
+    },
   };
 }
 
@@ -35,9 +47,83 @@ export default async function ArticlePage({ params }: Props) {
   if (!data) notFound();
 
   const article = data.data;
+  const articleUrl = `${BASE_URL}/articles/${article.slug}`;
+  const authorUrl = article.author_slug ? `${BASE_URL}/authors/${article.author_slug}` : BASE_URL;
+  const categoryUrl = article.category_slug ? `${BASE_URL}/categories/${article.category_slug}` : BASE_URL;
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.meta_description || article.excerpt,
+    author: {
+      '@type': 'Person',
+      name: article.author_name || 'ІПЗ-педія',
+      url: authorUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ІПЗ-педія',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}/favicon.png`,
+      },
+    },
+    datePublished: article.published_at,
+    dateModified: article.updated_at || article.published_at,
+    image: article.cover_url ? `${BASE_URL}${article.cover_url}` : `${BASE_URL}/favicon.png`,
+    mainEntityOfPage: articleUrl,
+  };
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Головна',
+        item: BASE_URL,
+      },
+      ...(article.category_name
+        ? [
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: article.category_name,
+              item: categoryUrl,
+            },
+          ]
+        : []),
+      {
+        '@type': 'ListItem',
+        position: article.category_name ? 3 : 2,
+        name: article.title,
+        item: articleUrl,
+      },
+    ],
+  };
 
   return (
     <div className="article-content">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <nav aria-label="Breadcrumb" style={{ fontSize: 12, marginBottom: '0.75rem' }}>
+        <Link href="/">Головна</Link>
+        {article.category_name && (
+          <>
+            <span> → </span>
+            <Link href={`/categories/${article.category_slug}`}>{article.category_name}</Link>
+          </>
+        )}
+        <span> → </span>
+        <span>{article.title}</span>
+      </nav>
+
       {article.category_name && (
         <Link href={`/categories/${article.category_slug}`} className="category-badge">
           {article.category_name}
@@ -58,6 +144,8 @@ export default async function ArticlePage({ params }: Props) {
           <img
             src={article.cover_url}
             alt={article.title}
+            width={800}
+            height={450}
             style={{ 
               maxWidth: '100%', 
               maxHeight: '400px',

@@ -84,7 +84,7 @@ export default async function HomePage() {
             <p><strong>ІПЗ-педія</strong> — потужний вісник спеціальності від <del>майже</del> найкращих спеціалістів.</p>
             <p style={{ marginTop: '5px', fontStyle: 'italic', fontWeight: 'bold', color: '#000080' }}>*Завдяки нам дорогою буде не тільки оперативна пам'ять.</p>
             <br />
-            <Link href="/about" className="win-btn" style={{ display: 'block', textAlign: 'center' }}>Детальніше</Link>
+            <Link href="/about" className="win-btn" style={{ display: 'block', textAlign: 'center' }}>Детальніше про ІПЗ-педію</Link>
           </div>
         </div>
 
