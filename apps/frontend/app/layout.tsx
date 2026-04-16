@@ -5,11 +5,30 @@ import Navbar from './components/Navbar';
 
 export const metadata: Metadata = {
   title: {
-    default: 'ІПЗ-педія — Онлайн-видання про комп’ютерні науки',
+    default: 'ІПЗ-педія — Найпотужніший вісник спеціальності ІПЗ | ЧНУ',
     template: '%s | ІПЗ-педія',
   },
   description:
-    'ІПЗ-педія — незалежне україномовне онлайн-відання про комп’ютерні науки. Засноване студентами ІПЗ в ІФТКН ЧНУ.',
+    'Тут ми робимо IT душевним. Від ретро-технологій 90-х до сучасного AI — дізнайтеся, як стають справжніми майстрами на спеціальності ІПЗ в ІФТКН ЧНУ.',
+  icons: {
+    icon: '/images/logo.png',
+    apple: '/images/logo.png',
+  },
+  openGraph: {
+    title: 'ІПЗ-педія — Найпотужніший вісник спеціальності ІПЗ',
+    description: 'Енциклопедія IT від справжніх майстрів спеціальності ІПЗ. Тільки хардкор, проєкти та вайб 90-х.',
+    url: 'https://ipzpedia.pp.ua',
+    siteName: 'ІПЗ-педія',
+    images: [
+      {
+        url: '/images/logo.png',
+        width: 400,
+        height: 400,
+      },
+    ],
+    locale: 'uk_UA',
+    type: 'website',
+  },
   verification: {
     google: 'ZKBuBgRJNf1ffu8iskDb1qSwxRRTFGRy4hpk3sTlkLo',
   },
