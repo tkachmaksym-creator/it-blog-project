@@ -1,30 +1,26 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
 
+const navItems = [
+  { href: '/', label: 'Головна' },
+  { href: '/categories/programming', label: 'Програмування' },
+  { href: '/categories/ai-ml', label: 'Штучний інтелект' },
+  { href: '/categories/gadgets', label: 'Пристрої' },
+  { href: '/categories/cybersecurity', label: 'Інформаційна безпека' },
+  { href: '/categories/tools', label: 'Інструменти' },
+  { href: '/about', label: 'Про нас' },
+];
+
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-
   return (
     <nav className="navbar">
-      <div className="nav-controls">
-        <button className="nav-toggle-btn" onClick={toggleMenu}>
-          {isOpen ? 'Закрити' : 'Меню'}
-        </button>
-      </div>
-      
-      <div className={`nav-links ${isOpen ? 'is-open' : ''}`}>
-        <Link href="/" onClick={() => setIsOpen(false)}>Головна</Link>
-        <Link href="/categories/programming" onClick={() => setIsOpen(false)}>Програмування</Link>
-        <Link href="/categories/ai-ml" onClick={() => setIsOpen(false)}>Штучний інтелект</Link>
-        <Link href="/categories/gadgets" onClick={() => setIsOpen(false)}>Пристрої</Link>
-        <Link href="/categories/cybersecurity" onClick={() => setIsOpen(false)}>Інформаційна безпека</Link>
-        <Link href="/categories/tools" onClick={() => setIsOpen(false)}>Інструменти</Link>
-        <Link href="/about" onClick={() => setIsOpen(false)}>Про нас</Link>
-      </div>
+      <details className="nav-menu">
+        <summary className="nav-toggle-btn">Меню</summary>
+        <div className="nav-links">
+          {navItems.map((item) => (
+            <Link key={item.href} href={item.href}>{item.label}</Link>
+          ))}
+        </div>
+      </details>
     </nav>
   );
 }

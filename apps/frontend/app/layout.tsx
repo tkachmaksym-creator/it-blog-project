@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import './globals.css';
 
 import Navbar from './components/Navbar';
@@ -6,7 +7,7 @@ import Navbar from './components/Navbar';
 export const metadata: Metadata = {
   metadataBase: new URL('https://frontend-production-0907.up.railway.app'),
   title: {
-    default: 'ІПЗ-педія — Потужний вісник про IT та комп’ютерні науки',
+    default: 'ІПЗ-педія - Потужний вісник про IT та комп’ютерні науки',
     template: '%s | ІПЗ-педія',
   },
   description:
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     apple: '/favicon.png',
   },
   openGraph: {
-    title: 'ІПЗ-педія — Потужний вісник про IT та комп’ютерні науки',
+    title: 'ІПЗ-педія - Потужний вісник про IT та комп’ютерні науки',
     description: 'Незалежне видання про програмування, технології та життя спеціальності ІПЗ в ІФТКН ЧНУ.',
     url: 'https://frontend-production-0907.up.railway.app',
     siteName: 'ІПЗ-педія',
@@ -46,11 +47,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="container header-container">
             <div className="header-top">
               <div className="logo-group">
-                <img src="/images/logo.png" alt="IPZ Logo" style={{ width: '40px', height: '40px', imageRendering: 'pixelated' }} />
+                <Image src="/images/logo.png" alt="IPZ Logo" width={40} height={40} priority style={{ imageRendering: 'pixelated' }} />
                 <a href="/" className="site-logo">ІПЗ-педія</a>
               </div>
               <div className="site-tagline">
-                Спеціальність ІПЗ · ІФТКН<br />
+                Спеціальність ІПЗ | ІФТКН<br />
                 Чернівецький національний університет ім. Юрія Федьковича
               </div>
             </div>
@@ -61,7 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               ЛАСКАВО ПРОСИМО ДО ІПЗ-ПЕДІЇ! &nbsp;&nbsp;&nbsp;
               Тут ти знайдеш все що треба знати про ІТ: від пристроїв до алгоритмів &nbsp;&nbsp;&nbsp;
               НОВІ СТАТТІ ЩОТИЖНЯ &nbsp;&nbsp;&nbsp;
-              Спеціальність ІПЗ · ІФТКН · ЧНУ · 2026 &nbsp;&nbsp;&nbsp;
+              Спеціальність ІПЗ | ІФТКН | ЧНУ | 2026 &nbsp;&nbsp;&nbsp;
               ОПТИМІЗОВАНО ПІД 1024x768 &nbsp;&nbsp;&nbsp;
             </span>
           </div>
@@ -71,11 +72,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <footer>
           <p>
-            © 2026 <strong>ІПЗ-педія</strong> · ІФТКН · Кафедра комп'ютерних наук (Спеціальність ІПЗ) · ЧНУ
+            © 2026 <strong>ІПЗ-педія</strong> | ІФТКН | Кафедра комп'ютерних наук (Спеціальність ІПЗ) | ЧНУ
           </p>
           <p style={{ marginTop: 4 }}>
-            <a href="/about">Про нас</a> ·{' '}
-            <a href="mailto:admin@ipzpedia.pp.ua">admin@ipzpedia.pp.ua</a> ·{' '}
+            <a href="/about">Про нас</a> |{' '}
+            <a href="mailto:admin@ipzpedia.pp.ua">admin@ipzpedia.pp.ua</a> |{' '}
             <a href="https://github.com/tkachmaksym-creator/it-blog-project" target="_blank" rel="noopener noreferrer">GitHub</a>
           </p>
         </footer>

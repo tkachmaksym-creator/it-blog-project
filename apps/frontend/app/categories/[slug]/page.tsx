@@ -1,6 +1,6 @@
 import { getCategoryArticles } from '@/lib/api';
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import ArticleList from '@/app/components/ArticleList';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://frontend-production-0907.up.railway.app';
 
@@ -26,13 +26,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export const revalidate = 60;
 
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('uk-UA', { year: 'numeric', month: 'long', day: 'numeric' });
-}
-
 const categoryNames: Record<string, string> = {
   'programming': 'Програмування',
   'ai-ml': 'Штучний інтелект',
+  'backend': 'Backend',
   'gadgets': 'Пристрої',
   'cybersecurity': 'Інформаційна безпека',
   'tools': 'Інструменти'
@@ -48,50 +45,7 @@ export default async function CategoryPage({ params }: Props) {
         <span>Розділ: {categoryTitle}</span>
       </div>
       <div className="win-box-body">
-
-      <div className="article-list">
-        {articles?.map((article: {
-          slug: string;
-          title: string;
-          excerpt?: string;
-          author_name?: string;
-          published_at?: string;
-          cover_url?: string;
-          views?: number;
-        }) => (
-          <div key={article.slug} className="win-box article-window" style={{ marginBottom: '16px' }}>
-            <div className="win-box-title">
-              <span>{article.title}</span>
-            </div>
-            <div className="win-box-body flex-list-item">
-              {article.cover_url && (
-                <div className="article-thumb">
-                  <img src={article.cover_url} alt={article.title} />
-                </div>
-              )}
-              <div className="article-details">
-                {article.excerpt && (
-                  <p className="article-excerpt">
-                    {article.excerpt}...
-                  </p>
-                )}
-                <div className="article-meta">
-                  Автор: {article.author_name} · Дата: {article.published_at ? formatDate(article.published_at) : ''} · Переглядів: {article.views || 0}
-                </div>
-                <div className="article-actions">
-                  <Link href={`/articles/${article.slug}`} className="win-btn">
-                    Читати далі
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {!articles?.length && (
-        <p style={{ color: '#6b7280' }}>У цій категорії ще немає статей.</p>
-      )}
+        <ArticleList articles={articles} />
       </div>
     </div>
   );

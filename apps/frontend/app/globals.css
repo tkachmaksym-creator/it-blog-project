@@ -107,6 +107,15 @@ header {
   padding: 1px;
   position: relative;
 }
+.nav-menu {
+  display: block;
+}
+.nav-menu > summary {
+  list-style: none;
+}
+.nav-menu > summary::-webkit-details-marker {
+  display: none;
+}
 @media (max-width: 850px) {
   .navbar {
     background: transparent;
@@ -203,7 +212,7 @@ header {
     box-shadow: 4px 4px 0 rgba(0,0,0,0.5); /* Stronger Win9x shadow */
   }
   
-  .nav-links.is-open {
+  .nav-menu[open] .nav-links {
     display: flex;
   }
   
@@ -459,6 +468,24 @@ main {
   overflow-x: auto;
   border: 2px solid #ff6600;
   margin: 8px 0;
+}
+
+.article-hero-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.article-hero-image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+  box-shadow: 1px 1px 0px #000;
 }
 
 /* ── AUTHOR BLOCK ── */

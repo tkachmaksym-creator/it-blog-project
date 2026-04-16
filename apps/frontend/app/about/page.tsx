@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
+import TeamMemberCard, { type TeamMember } from '../components/TeamMemberCard';
 
 export const metadata: Metadata = {
   title: 'Про нас',
   description:
-    'ІПЗ-педія — незалежне україномовне онлайн-видання про комп’ютерні науки. Засноване студентами ІПЗ в Інституті ІФТКН ЧНУ.',
+    'ІПЗ-педія - незалежне україномовне онлайн-видання про комп’ютерні науки. Засноване студентами ІПЗ в Інституті ІФТКН ЧНУ.',
 };
 
-const teamMembers = [
+const teamMembers: TeamMember[] = [
   {
     name: 'Максим Ткач',
     role: 'Творець платформи та технічний спеціаліст',
@@ -31,61 +32,12 @@ const teamMembers = [
   {
     name: 'Максим Яцко',
     role: 'Редакційний асистент і координатор тем',
+    initials: 'МЯ',
     bio:
       'Допомагає узгоджувати теми матеріалів, перевіряти зрозумілість формулювань і підтримувати єдиний стиль навчального блогу.',
     links: [],
   },
 ];
-
-function TeamMemberCard({ member }: { member: (typeof teamMembers)[number] }) {
-  return (
-    <div className="author-block">
-      {member.avatar ? (
-        <img src={member.avatar} alt={member.name} style={{ objectFit: 'cover' }} />
-      ) : (
-        <div
-          aria-label={`Плейсхолдер аватара: ${member.name}`}
-          style={{
-            width: 72,
-            height: 72,
-            border: '2px solid #000080',
-            background: '#dcdcdc',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: '#000080',
-            fontWeight: 'bold',
-            flexShrink: 0,
-          }}
-        >
-          МЯ
-        </div>
-      )}
-      <div className="author-block-details">
-        <h3 className="author-block-name">{member.name}</h3>
-        <p style={{ fontSize: '0.8rem', fontWeight: 'bold', color: '#555', margin: '0 0 8px 0' }}>
-          {member.role}
-        </p>
-        <p className="author-block-bio">{member.bio}</p>
-        {member.links.length > 0 && (
-          <div style={{ marginTop: 8 }}>
-            {member.links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                style={{ fontSize: '12px', color: '#0000ee', marginRight: 10 }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 export default function AboutPage() {
   return (
@@ -98,11 +50,11 @@ export default function AboutPage() {
           </h1>
           
           <p style={{ marginBottom: 12, fontSize: 13, lineHeight: '1.4' }}>
-            <strong>ІПЗ-педія</strong> — це незалежне україномовне онлайн-видання, створене в межах курсу «SEO та пошукова оптимізація» студентами кафедри <strong>комп’ютерних наук</strong> (спеціальність ІПЗ) в Інституті фізико-технічних та комп’ютерних наук (ІФТКН) Чернівецького національного університету ім. Юрія Федьковича.
+            <strong>ІПЗ-педія</strong> - це незалежне україномовне онлайн-видання, створене в межах курсу "SEO та пошукова оптимізація" студентами кафедри <strong>комп’ютерних наук</strong> (спеціальність ІПЗ) в Інституті фізико-технічних та комп’ютерних наук (ІФТКН) Чернівецького національного університету ім. Юрія Федьковича.
           </p>
 
           <p style={{ marginBottom: 12, fontSize: 13, lineHeight: '1.4' }}>
-            Наш проєкт — це спроба поєднати сучасні технології з естетикою «старого доброго інтернету» (Y2K / Windows 9x style). Ми віримо, що контент має бути не лише корисним для пошукових систем, а й цікавим та зручним для живих людей.
+            Наш проєкт - це спроба поєднати сучасні технології з естетикою "старого доброго інтернету" (Y2K / Windows 9x style). Ми віримо, що контент має бути не лише корисним для пошукових систем, а й цікавим та зручним для живих людей.
           </p>
 
           <h2 style={{ fontSize: '1.1rem', color: '#000080', marginBottom: 8, marginTop: 16 }}>Наша місія</h2>
@@ -129,7 +81,7 @@ export default function AboutPage() {
           ))}
 
           <div style={{ background: '#f0f0f0', border: '1px solid #808080', padding: 8, marginTop: 16, fontSize: 12, color: '#333' }}>
-            <strong>Зауваження:</strong> Цей сайт знаходиться у стадії розробки. Якщо ви знайшли помилку або маєте пропозиції — пишіть нам на GitHub!
+            <strong>Зауваження:</strong> Цей сайт знаходиться у стадії розробки. Якщо ви знайшли помилку або маєте пропозиції - пишіть нам на GitHub!
           </div>
         </div>
       </div>

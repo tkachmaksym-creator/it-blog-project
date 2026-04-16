@@ -2,6 +2,13 @@ import { getArticle, getRelatedArticles } from '@/lib/api';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import ArticleAuthorBlock from '@/app/components/ArticleAuthorBlock';
+import ArticleBreadcrumbs from '@/app/components/ArticleBreadcrumbs';
+import ArticleHeroImage from '@/app/components/ArticleHeroImage';
+import ArticleTags from '@/app/components/ArticleTags';
+import JsonLd from '@/app/components/JsonLd';
+import RelatedArticles from '@/app/components/RelatedArticles';
+import type { ArticleDetail } from '@/lib/types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://frontend-production-0907.up.railway.app';
 
@@ -13,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const data = await getArticle(params.slug);
   if (!data) return { title: 'Стаття не знайдена' };
 
-  const article = data.data;
+  const article = data.data as ArticleDetail;
   return {
     title: article.meta_title || article.title,
     description: article.meta_description || article.excerpt,
@@ -46,7 +53,7 @@ export default async function ArticlePage({ params }: Props) {
 
   if (!data) notFound();
 
-  const article = data.data;
+  const article = data.data as ArticleDetail;
   const articleUrl = `${BASE_URL}/articles/${article.slug}`;
   const authorUrl = article.author_slug ? `${BASE_URL}/authors/${article.author_slug}` : BASE_URL;
   const categoryUrl = article.category_slug ? `${BASE_URL}/categories/${article.category_slug}` : BASE_URL;
@@ -104,25 +111,13 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <div className="article-content">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
+      <ArticleBreadcrumbs
+        title={article.title}
+        categoryName={article.category_name}
+        categorySlug={article.category_slug}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <nav aria-label="Breadcrumb" style={{ fontSize: 12, marginBottom: '0.75rem' }}>
-        <Link href="/">Головна</Link>
-        {article.category_name && (
-          <>
-            <span> → </span>
-            <Link href={`/categories/${article.category_slug}`}>{article.category_name}</Link>
-          </>
-        )}
-        <span> → </span>
-        <span>{article.title}</span>
-      </nav>
 
       {article.category_name && (
         <Link href={`/categories/${article.category_slug}`} className="category-badge">
@@ -135,86 +130,24 @@ export default async function ArticlePage({ params }: Props) {
         {article.author_name && (
           <Link href={`/authors/${article.author_slug}`}>{article.author_name}</Link>
         )}
-        {article.published_at && ` · ${formatDate(article.published_at)}`}
-        {` · ${article.views} переглядів`}
+        {article.published_at && ` | ${formatDate(article.published_at)}`}
+        {` | ${article.views} переглядів`}
       </div>
 
-      {article.cover_url && (
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
-          <img
-            src={article.cover_url}
-            alt={article.title}
-            width={800}
-            height={450}
-            style={{ 
-              maxWidth: '100%', 
-              maxHeight: '400px',
-              width: 'auto',
-              height: 'auto', 
-              objectFit: 'contain',
-              imageRendering: 'auto',
-              borderTop: '2px solid #808080',
-              borderLeft: '2px solid #808080',
-              borderRight: '2px solid #ffffff',
-              borderBottom: '2px solid #ffffff',
-              boxShadow: '1px 1px 0px #000'
-            }}
-          />
-        </div>
-      )}
+      <ArticleHeroImage src={article.cover_url} alt={article.title} />
 
       <div style={{ lineHeight: 1.8 }} dangerouslySetInnerHTML={{ __html: article.content }} />
 
-      {article.tags && article.tags.length > 0 && (
-        <div className="article-tags" style={{ marginTop: '2rem', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-          <span style={{ fontWeight: 'bold', fontSize: '13px' }}>Теги:</span>
-          {article.tags.map((tag: { name: string; slug: string }) => (
-            <span key={tag.slug} style={{ fontSize: '12px', color: '#000080', background: '#e0e0e0', padding: '2px 8px', border: '1px solid #808080', boxShadow: '1px 1px 0px #000' }}>
-              #{tag.name}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {/* Блок автора (E-E-A-T) */}
-      {article.author_name && (
-        <div className="author-block">
-          {article.author_avatar_url && (
-            <img src={article.author_avatar_url} alt={article.author_name} />
-          )}
-          <div>
-            <Link href={`/authors/${article.author_slug}`} className="author-block-name">
-              {article.author_name}
-            </Link>
-            {article.author_bio && (
-              <div className="author-block-bio">
-                {article.author_bio}
-              </div>
-            )}
-            <div className="author-block-dates">
-              {article.published_at && (
-                <span>Опубліковано: {formatDate(article.published_at)}</span>
-              )}
-              {article.updated_at && article.updated_at !== article.published_at && (
-                <span style={{ marginLeft: '12px' }}>Оновлено: {formatDate(article.updated_at)}</span>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {related.data?.length > 0 && (
-        <section style={{ marginTop: '3rem', borderTop: '1px solid #e5e7eb', paddingTop: '2rem' }}>
-          <h3 style={{ marginBottom: '1rem' }}>Схожі статті</h3>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            {related.data.map((r: { slug: string; title: string }) => (
-              <Link key={r.slug} href={`/articles/${r.slug}`} style={{ color: '#1d4ed8' }}>
-                {r.title}
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+      <ArticleTags tags={article.tags} />
+      <ArticleAuthorBlock
+        name={article.author_name}
+        slug={article.author_slug}
+        bio={article.author_bio}
+        avatarUrl={article.author_avatar_url}
+        publishedAt={article.published_at}
+        updatedAt={article.updated_at}
+      />
+      <RelatedArticles articles={related.data} />
     </div>
   );
 }
