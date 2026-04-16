@@ -86,7 +86,7 @@
 | 4 | Не було canonical на категоріях/авторах | Ризик дублювання динамічних сторінок | Додано canonical | DevTools після деплою | Done |
 | 5 | Не було Article JSON-LD | Google гірше розуміє тип сторінки | Додано `Article` structured data | Rich Results Test після деплою | Done |
 | 6 | Не було BreadcrumbList JSON-LD | Немає структурованої ієрархії | Додано breadcrumbs + JSON-LD | Rich Results Test після деплою | Done |
-| 7 | CLS на сторінці статті | Поганий page experience | Додано `width`/`height` для cover image | PageSpeed re-test після деплою | Done in code |
+| 7 | CLS на сторінці статті | Поганий page experience | Додано `next/image`, `width`/`height`, `sizes` і стабільний hero-блок | PageSpeed re-test | Done |
 | 8 | Немає явного H1 на головній і категоріях | Слабший on-page сигнал | Додано видимий H1 на `/` і `/categories/[slug]` | HTML після деплою | Done in code |
 
 ---
@@ -99,7 +99,7 @@
 | `sitemap.xml` | Відкрити `/sitemap.xml` | `/authors` відсутній, публічні URL присутні |
 | Canonical | DevTools -> search `canonical` | Очікується self-canonical |
 | Schema.org | Rich Results Test | Очікується валідний `Article` / `BreadcrumbList` |
-| CLS | PageSpeed повторно | Очікується зниження CLS після фікса розмірів image |
+| CLS | PageSpeed повторно | CLS зменшився до `0.051` mobile і `0` desktop на сторінці статті |
 | 4xx/5xx | ручна перевірка URL | Критичних 4xx серед основних URL немає |
 
 ---
@@ -108,28 +108,28 @@
 
 ### 6.1 Головна сторінка
 
-![PageSpeed Mobile](images/pagespeed_mobile.png)
+![PageSpeed Mobile Updated](images/pagespeed_mobile_update.png)
 
-![PageSpeed Desktop](images/pagespeed_computer.png)
+![PageSpeed Desktop Updated](images/pagespeed_computer_update.png)
 
 | URL | Device | Performance | LCP | INP/TBT | CLS | FCP | Speed Index | Статус CWV |
 |-----|--------|-------------|-----|---------|-----|-----|-------------|------------|
-| `/` | Mobile | 98 | 1.7 s | TBT 0 ms | 0 | 0.8 s | 3.9 s | Good |
+| `/` | Mobile | 98 | 1.6 s | TBT 0 ms | 0.032 | 0.8 s | 3.8 s | Good |
 | `/` | Desktop | 100 | 0.3 s | TBT 0 ms | 0 | 0.2 s | 0.6 s | Good |
 
 ### 6.2 Сторінка статті
 
-![PageSpeed Article Mobile](images/pagespeed_mobile_article.png)
+![PageSpeed Article Mobile Updated](images/pagespeed_mobile_article_update.png)
 
-![PageSpeed Article Desktop](images/pagespeed_computer_article.png)
+![PageSpeed Article Desktop Updated](images/pagespeed_computer_article_update.png)
 
 | URL | Device | Performance | LCP | INP/TBT | CLS | FCP | Speed Index | Статус CWV |
 |-----|--------|-------------|-----|---------|-----|-----|-------------|------------|
-| `/articles/y2k-windows-style-review` | Mobile | 88 | 1.9 s | TBT 0 ms | 0.237 | 0.8 s | 2.2 s | Needs Improvement |
-| `/articles/y2k-windows-style-review` | Desktop | 89 | 0.4 s | TBT 0 ms | 0.228 | 0.2 s | 0.7 s | Needs Improvement |
+| `/articles/y2k-windows-style-review` | Mobile | 99 | 1.9 s | TBT 0 ms | 0.051 | 0.8 s | 2.0 s | Good |
+| `/articles/y2k-windows-style-review` | Desktop | 100 | 0.4 s | TBT 0 ms | 0 | 0.2 s | 0.7 s | Good |
 
-Головна проблема швидкості: CLS на сторінці статті. LCP і TBT хороші, але сторінка зсувається під час завантаження
-зображення або верхніх блоків.
+Після оптимізації hero-зображення та стабілізації розмірів блоків сторінка статті має хороший PageSpeed-результат:
+CLS відповідає нормі на mobile і desktop, LCP та TBT також залишаються в зеленій зоні.
 
 ---
 
@@ -150,7 +150,7 @@
 |---------|------|-------|-------|-----------------|
 | LCP | 1.9 s mobile | Очікується без погіршення | - | Так |
 | INP/TBT | TBT 0 ms | 0 ms | 0 | Так |
-| CLS | 0.237 mobile | Потребує повторного PageSpeed після деплою | очікується зменшення | Pending re-test |
+| CLS | 0.237 mobile | 0.051 mobile | -0.186 | Так |
 
 ---
 

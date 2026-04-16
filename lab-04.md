@@ -241,25 +241,25 @@ IT-блозі.
 
 ## 8. PageSpeed Insights
 
-Перевірено сторінку статті:
+Після оптимізації зображень і стабілізації hero-блоку сторінку статті повторно перевірено через PageSpeed Insights.
 
-![PageSpeed Mobile Article](images/pagespeed_mobile_article.png)
+![PageSpeed Mobile Article Updated](images/pagespeed_mobile_article_update.png)
 
-![PageSpeed Desktop Article](images/pagespeed_computer_article.png)
+![PageSpeed Desktop Article Updated](images/pagespeed_computer_article_update.png)
 
 | Метрика | Mobile | Desktop | Норма | Статус |
 |---------|--------|---------|-------|--------|
-| Performance Score | 88 | 89 | >= 90 | Needs Improvement |
+| Performance Score | 99 | 100 | >= 90 | Good |
 | LCP | 1.9 s | 0.4 s | <= 2.5 s | Good |
-| CLS | 0.237 | 0.228 | <= 0.1 | Needs Improvement |
+| CLS | 0.051 | 0 | <= 0.1 | Good |
 | TBT | 0 ms | 0 ms | <= 200 ms | Good |
-| Speed Index | 2.2 s | 0.7 s | <= 3.4 s | Good |
+| Speed Index | 2.0 s | 0.7 s | <= 3.4 s | Good |
 
-Три найкритичніші рекомендації:
+Результат повторної перевірки:
 
-1. Зменшити CLS: зафіксувати розміри зображень і блоків, щоб сторінка не зсувалася під час завантаження.
-2. Оптимізувати головне зображення статті: WebP/AVIF, стабільні `width`/`height`.
-3. Перевірити мобільну верстку: текст і зображення мають займати стабільний простір до завантаження.
+1. CLS зменшився з `0.237` до `0.051` на mobile і з `0.228` до `0` на desktop.
+2. Performance Score виріс до `99` на mobile і `100` на desktop.
+3. Сторінка статті тепер проходить основні PageSpeed-пороги для LCP, CLS і TBT.
 
 ---
 
@@ -319,10 +319,10 @@ Canonical:           https://frontend-production-0907.up.railway.app/articles/y2
 Schema.org тип:      Article + BreadcrumbList
 Rich Results Test:   потребує повторної перевірки після деплою
 
-PageSpeed Mobile:    88
+PageSpeed Mobile:    99
 LCP:                 1.9 s
-CLS:                 0.237
-Статус CWV:          Needs Improvement через CLS
+CLS:                 0.051
+Статус CWV:          Good після оптимізації зображень
 
 Канібалізація:       немає для основного запиту
 Зображення:          рекомендовано конвертувати hero image у WebP
@@ -356,7 +356,6 @@ CLS:                 0.237
 
 ## Висновок
 
-Сторінка статті має добру базу: нормальний URL, авторство, HTTPS, швидкий LCP і високий SEO score. Основні покращення:
-розширити текст, додати повну структуру H2-H3, оптимізувати meta description, додати canonical і JSON-LD. Після
-перевірки PageSpeed головною технічною проблемою сторінки є CLS, тому наступна оптимізація має бути спрямована на
-стабільні розміри зображень і блоків.
+Сторінка статті має добру SEO-базу: нормальний URL, авторство, HTTPS, швидкий LCP, canonical, Article JSON-LD,
+BreadcrumbList JSON-LD і високий PageSpeed. Після оптимізації зображень основну проблему CLS виправлено: повторна
+перевірка показала `0.051` на mobile і `0` на desktop.
