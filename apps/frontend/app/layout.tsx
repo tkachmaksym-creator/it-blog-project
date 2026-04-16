@@ -4,24 +4,28 @@ import './globals.css';
 import Navbar from './components/Navbar';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://frontend-production-0907.up.railway.app'),
   title: {
-    default: 'ІПЗ-педія — Найпотужніший вісник спеціальності ІПЗ | ЧНУ',
+    default: 'ІПЗ-педія — Потужний вісник про IT та комп’ютерні науки',
     template: '%s | ІПЗ-педія',
   },
   description:
-    'Тут ми робимо IT душевним. Від ретро-технологій 90-х до сучасного AI — дізнайтеся, як стають справжніми майстрами на спеціальності ІПЗ в ІФТКН ЧНУ.',
+    'Незалежне видання про програмування, технології та життя спеціальності ІПЗ в ІФТКН ЧНУ.',
   icons: {
-    icon: '/images/logo.png',
-    apple: '/images/logo.png',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon.png', sizes: '64x64', type: 'image/png' },
+    ],
+    apple: '/favicon.png',
   },
   openGraph: {
-    title: 'ІПЗ-педія — Найпотужніший вісник спеціальності ІПЗ',
-    description: 'Енциклопедія IT від справжніх майстрів спеціальності ІПЗ. Тільки хардкор, проєкти та вайб 90-х.',
-    url: 'https://ipzpedia.pp.ua',
+    title: 'ІПЗ-педія — Потужний вісник про IT та комп’ютерні науки',
+    description: 'Незалежне видання про програмування, технології та життя спеціальності ІПЗ в ІФТКН ЧНУ.',
+    url: 'https://frontend-production-0907.up.railway.app',
     siteName: 'ІПЗ-педія',
     images: [
       {
-        url: '/images/logo.png',
+        url: '/favicon.png',
         width: 400,
         height: 400,
       },
