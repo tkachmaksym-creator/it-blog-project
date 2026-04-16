@@ -19,7 +19,11 @@ router.get('/', async (req, res) => {
       db.query(
         `SELECT a.id, a.title, a.slug, a.excerpt, a.cover_url, a.views, a.published_at,
                 u.name as author_name, u.slug as author_slug,
-                c.name as category_name, c.slug as category_slug
+                c.name as category_name, c.slug as category_slug,
+                (SELECT json_agg(json_build_object('id', t.id, 'name', t.name, 'slug', t.slug))
+                 FROM tags t
+                 JOIN article_tags at ON at.tag_id = t.id
+                 WHERE at.article_id = a.id) as tags
          FROM articles a
          LEFT JOIN users u ON a.author_id = u.id
          LEFT JOIN categories c ON a.category_id = c.id
@@ -47,7 +51,11 @@ router.get('/:slug', async (req, res) => {
     const result = await db.query(
       `SELECT a.*, u.name as author_name, u.slug as author_slug, u.bio as author_bio,
               u.avatar_url as author_avatar_url,
-              c.name as category_name, c.slug as category_slug
+              c.name as category_name, c.slug as category_slug,
+              (SELECT json_agg(json_build_object('id', t.id, 'name', t.name, 'slug', t.slug))
+               FROM tags t
+               JOIN article_tags at ON at.tag_id = t.id
+               WHERE at.article_id = a.id) as tags
        FROM articles a
        LEFT JOIN users u ON a.author_id = u.id
        LEFT JOIN categories c ON a.category_id = c.id

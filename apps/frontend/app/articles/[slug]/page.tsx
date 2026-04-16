@@ -45,7 +45,7 @@ export default async function ArticlePage({ params }: Props) {
       )}
       <h1 style={{ marginTop: '0.5rem' }}>{article.title}</h1>
 
-      <div className="article-meta" style={{ marginBottom: '1.5rem' }}>
+      <div className="article-meta" style={{ marginBottom: '0.75rem' }}>
         {article.author_name && (
           <Link href={`/authors/${article.author_slug}`}>{article.author_name}</Link>
         )}
@@ -54,15 +54,17 @@ export default async function ArticlePage({ params }: Props) {
       </div>
 
       {article.cover_url && (
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
           <img
             src={article.cover_url}
             alt={article.title}
             style={{ 
-              width: '240px', 
-              height: '240px', 
-              objectFit: 'cover',
-              imageRendering: 'pixelated',
+              maxWidth: '100%', 
+              maxHeight: '400px',
+              width: 'auto',
+              height: 'auto', 
+              objectFit: 'contain',
+              imageRendering: 'auto',
               borderTop: '2px solid #808080',
               borderLeft: '2px solid #808080',
               borderRight: '2px solid #ffffff',
@@ -74,6 +76,17 @@ export default async function ArticlePage({ params }: Props) {
       )}
 
       <div style={{ lineHeight: 1.8 }} dangerouslySetInnerHTML={{ __html: article.content }} />
+
+      {article.tags && article.tags.length > 0 && (
+        <div className="article-tags" style={{ marginTop: '2rem', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          <span style={{ fontWeight: 'bold', fontSize: '13px' }}>Теги:</span>
+          {article.tags.map((tag: { name: string; slug: string }) => (
+            <span key={tag.slug} style={{ fontSize: '12px', color: '#000080', background: '#e0e0e0', padding: '2px 8px', border: '1px solid #808080', boxShadow: '1px 1px 0px #000' }}>
+              #{tag.name}
+            </span>
+          ))}
+        </div>
+      )}
 
       {/* Блок автора (E-E-A-T) */}
       {article.author_name && (

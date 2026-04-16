@@ -21,47 +21,48 @@ export default async function HomePage() {
     <div className="layout-with-sidebar">
       <div className="layout-main">
         <div className="article-list">
-        {articles?.map((article: {
-          slug: string;
-          cover_url?: string;
-          title: string;
-          category_name?: string;
-          category_slug?: string;
-          excerpt?: string;
-          author_name?: string;
-          published_at?: string;
-          views?: number;
-        }) => (
-          <div key={article.slug} className="win-box article-window">
-            <div className="win-box-title">
-              <span>▪ {article.title}</span>
-            </div>
-            <div className="win-box-body flex-list-item">
-              {article.cover_url && (
-                <div className="article-thumb">
-                  <img src={article.cover_url} alt={article.title} />
-                </div>
-              )}
-              <div className="article-details">
-                {article.category_name && (
-                  <span className="category-badge">{article.category_name}</span>
+        {articles?.map((article: any) => (
+          <Link key={article.slug} href={`/articles/${article.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <div className="win-box article-window">
+              <div className="win-box-title">
+                <span>{article.title}</span>
+              </div>
+              <div className="win-box-body flex-list-item">
+                {article.cover_url && (
+                  <div className="article-thumb">
+                    <img src={article.cover_url} alt={article.title} />
+                  </div>
                 )}
-                {article.excerpt && (
-                  <p className="article-excerpt">
-                    {article.excerpt}...
-                  </p>
-                )}
-                <div className="article-meta">
-                  Автор: {article.author_name} &nbsp;|&nbsp; Дата: {article.published_at ? formatDate(article.published_at) : ''} &nbsp;|&nbsp; 👁 {article.views || 0}
-                </div>
-                <div className="article-actions">
-                  <Link href={`/articles/${article.slug}`} className="win-btn">
-                    Читати далі »
-                  </Link>
+                <div className="article-details">
+                  {article.category_name && (
+                    <span className="category-badge">{article.category_name}</span>
+                  )}
+                  {article.excerpt && (
+                    <p className="article-excerpt">
+                      {article.excerpt}...
+                    </p>
+                  )}
+                  <div className="article-meta">
+                    Автор: {article.author_name} &nbsp;|&nbsp; Дата: {article.published_at ? formatDate(article.published_at) : ''} &nbsp;|&nbsp; Переглядів: {article.views || 0}
+                  </div>
+                  {article.tags && article.tags.length > 0 && (
+                    <div className="article-tags" style={{ marginTop: 4, display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                      {article.tags.map((tag: any) => (
+                        <span key={tag.slug} style={{ fontSize: 10, color: '#000080', background: '#e0e0e0', padding: '1px 4px', border: '1px solid #808080' }}>
+                          #{tag.name}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <div className="article-actions" style={{ pointerEvents: 'none' }}>
+                    <span className="win-btn">
+                      Читати далі
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
@@ -77,11 +78,10 @@ export default async function HomePage() {
       <aside className="layout-sidebar">
         <div className="win-box">
           <div className="win-box-title">
-            <span>► Про портал</span>
+            <span>Про портал</span>
           </div>
           <div className="win-box-body">
-            <p><strong>ІПЗ-педія</strong> — незалежний вісник кафедри.</p>
-            <p style={{ marginTop: '5px' }}>Віщаємо про програмування, пристрої та штучний інтелект у класичному форм-факторі.</p>
+            <p><strong>ІПЗ-педія</strong> — потужний вісник спеціальності від <del>майже</del> найкращих спеціалістів.</p>
             <p style={{ marginTop: '5px', fontStyle: 'italic', fontWeight: 'bold', color: '#000080' }}>*Завдяки нам дорогою буде не тільки оперативна пам'ять.</p>
             <br />
             <Link href="/about" className="win-btn" style={{ display: 'block', textAlign: 'center' }}>Детальніше</Link>
@@ -90,7 +90,7 @@ export default async function HomePage() {
 
         <div className="win-box">
           <div className="win-box-title">
-            <span>► Літопис (Архів)</span>
+            <span>Літопис (Архів)</span>
           </div>
           <div className="win-box-body">
             <ul style={{ listStyleType: 'square', marginLeft: '16px', lineHeight: '1.8' }}>
@@ -104,12 +104,12 @@ export default async function HomePage() {
 
         <div className="win-box">
           <div className="win-box-title">
-            <span>► Дружні вузли</span>
+            <span>Дружні вузли</span>
           </div>
           <div className="win-box-body">
-            <a href="https://chnu.edu.ua/" target="_blank" rel="noreferrer" style={{ display: 'block', marginBottom: '4px' }}>▪ ЧНУ ім. Ю. Федьковича</a>
-            <a href="https://nextjs.org/" target="_blank" rel="noreferrer" style={{ display: 'block', marginBottom: '4px' }}>▪ Каркас Next.js</a>
-            <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer" style={{ display: 'block' }}>▪ СКБД PostgreSQL</a>
+            <a href="https://chnu.edu.ua/" target="_blank" rel="noreferrer" style={{ display: 'block', marginBottom: '4px' }}>ЧНУ ім. Ю. Федьковича</a>
+            <a href="https://nextjs.org/" target="_blank" rel="noreferrer" style={{ display: 'block', marginBottom: '4px' }}>Каркас Next.js</a>
+            <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer" style={{ display: 'block' }}>СКБД PostgreSQL</a>
           </div>
         </div>
       </aside>

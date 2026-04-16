@@ -34,7 +34,7 @@ export default async function CategoryPage({ params }: Props) {
   return (
     <div className="win-box">
       <div className="win-box-title">
-        <span>► Розділ: {categoryTitle}</span>
+        <span>Розділ: {categoryTitle}</span>
       </div>
       <div className="win-box-body">
 
@@ -50,7 +50,7 @@ export default async function CategoryPage({ params }: Props) {
         }) => (
           <div key={article.slug} className="win-box article-window" style={{ marginBottom: '16px' }}>
             <div className="win-box-title">
-              <span>▪ {article.title}</span>
+              <span>{article.title}</span>
             </div>
             <div className="win-box-body flex-list-item">
               {article.cover_url && (
@@ -65,11 +65,11 @@ export default async function CategoryPage({ params }: Props) {
                   </p>
                 )}
                 <div className="article-meta">
-                  Автор: {article.author_name} · Дата: {article.published_at ? formatDate(article.published_at) : ''} · 👁 {article.views || 0}
+                  Автор: {article.author_name} · Дата: {article.published_at ? formatDate(article.published_at) : ''} · Переглядів: {article.views || 0}
                 </div>
                 <div className="article-actions">
                   <Link href={`/articles/${article.slug}`} className="win-btn">
-                    Читати далі »
+                    Читати далі
                   </Link>
                 </div>
               </div>

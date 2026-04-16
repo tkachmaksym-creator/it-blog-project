@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
 import './globals.css';
 
+import Navbar from './components/Navbar';
+
 export const metadata: Metadata = {
   title: {
-    default: 'ІПЗ-педія — Онлайн-видання кафедри ІПЗ',
+    default: 'ІПЗ-педія — Онлайн-видання про комп’ютерні науки',
     template: '%s | ІПЗ-педія',
   },
   description:
-    'ІПЗ-педія — незалежне україномовне онлайн-видання кафедри інженерії програмного забезпечення. ЕОМ, штучний інтелект, програмування, інформаційна безпека та все цікаве зі світу ІТ.',
+    'ІПЗ-педія — незалежне україномовне онлайн-відання про комп’ютерні науки. Засноване студентами ІПЗ в ІФТКН ЧНУ.',
   verification: {
     google: 'ZKBuBgRJNf1ffu8iskDb1qSwxRRTFGRy4hpk3sTlkLo',
   },
@@ -18,34 +20,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="uk">
       <body>
         <header>
-          <div className="container">
+          <div className="container header-container">
             <div className="header-top">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <img src="/images/logo.png" alt="IPZ Logo" style={{ width: '48px', height: '48px', imageRendering: 'pixelated' }} />
+              <div className="logo-group">
+                <img src="/images/logo.png" alt="IPZ Logo" style={{ width: '40px', height: '40px', imageRendering: 'pixelated' }} />
                 <a href="/" className="site-logo">ІПЗ-педія</a>
               </div>
               <div className="site-tagline">
-                Онлайн-видання кафедри ІПЗ<br />
-                Заснована у 2026 році · ЧНУ ім. Юрія Федьковича
+                Спеціальність ІПЗ · ІФТКН<br />
+                Чернівецький національний університет ім. Юрія Федьковича
               </div>
             </div>
-            <nav>
-              <a href="/">Головна</a>
-              <a href="/categories/programming">Програмування</a>
-              <a href="/categories/ai-ml">Штучний інтелект</a>
-              <a href="/categories/gadgets">Пристрої</a>
-              <a href="/categories/cybersecurity">Інформаційна безпека</a>
-              <a href="/categories/tools">Інструменти</a>
-              <a href="/about">Про нас</a>
-            </nav>
+            <Navbar />
           </div>
           <div className="y2k-ticker">
             <span className="y2k-ticker-inner">
-              ★ ЛАСКАВО ПРОСИМО ДО ІПЗ-ПЕДІЇ! ★ &nbsp;&nbsp;&nbsp;
+              ЛАСКАВО ПРОСИМО ДО ІПЗ-ПЕДІЇ! &nbsp;&nbsp;&nbsp;
               Тут ти знайдеш все що треба знати про ІТ: від пристроїв до алгоритмів &nbsp;&nbsp;&nbsp;
-              ★ НОВІ СТАТТІ ЩОТИЖНЯ ★ &nbsp;&nbsp;&nbsp;
-              Кафедра ІПЗ · ЧНУ · 2026 &nbsp;&nbsp;&nbsp;
-              ★ ОПТИМІЗОВАНО ПІД 1024x768 ★ &nbsp;&nbsp;&nbsp;
+              НОВІ СТАТТІ ЩОТИЖНЯ &nbsp;&nbsp;&nbsp;
+              Спеціальність ІПЗ · ІФТКН · ЧНУ · 2026 &nbsp;&nbsp;&nbsp;
+              ОПТИМІЗОВАНО ПІД 1024x768 &nbsp;&nbsp;&nbsp;
             </span>
           </div>
         </header>
@@ -54,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <footer>
           <p>
-            © 2026 <strong>ІПЗ-педія</strong> · Кафедра інженерії програмного забезпечення · ЧНУ ім. Ю. Федьковича
+            © 2026 <strong>ІПЗ-педія</strong> · ІФТКН · Кафедра комп'ютерних наук (Спеціальність ІПЗ) · ЧНУ
           </p>
           <p style={{ marginTop: 4 }}>
             <a href="/about">Про нас</a> ·{' '}
