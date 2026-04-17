@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 const navItems = [
   { href: '/', label: 'Головна' },
+  { href: '/categories', label: 'Категорії' },
   { href: '/categories/programming', label: 'Програмування' },
   { href: '/categories/ai-ml', label: 'Штучний інтелект' },
   { href: '/categories/gadgets', label: 'Пристрої' },

@@ -72,7 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <footer>
           <p>
-            © 2026 <strong>ІПЗ-педія</strong> | ІФТКН | Кафедра комп'ютерних наук (Спеціальність ІПЗ) | ЧНУ
+            © 2026 <strong>ІПЗ-педія</strong> | ІФТКН | Кафедра ПЗКС (Спеціальність ІПЗ) | ЧНУ
           </p>
           <p style={{ marginTop: 4 }}>
             <a href="/about">Про нас</a> |{' '}
