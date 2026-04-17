@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 export const metadata: Metadata = {
   metadataBase: new URL('https://frontend-production-0907.up.railway.app'),
   title: {
-    default: 'ІПЗ-педія - Потужний вісник про IT та комп’ютерні науки',
+    default: "ІПЗ-педія - Потужний вісник про IT та комп'ютерні науки",
     template: '%s | ІПЗ-педія',
   },
   description:
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     apple: '/favicon.png',
   },
   openGraph: {
-    title: 'ІПЗ-педія - Потужний вісник про IT та комп’ютерні науки',
+    title: "ІПЗ-педія - Потужний вісник про IT та комп'ютерні науки",
     description: 'Незалежне видання про програмування, технології та життя спеціальності ІПЗ в ІФТКН ЧНУ.',
     url: 'https://frontend-production-0907.up.railway.app',
     siteName: 'ІПЗ-педія',
