@@ -16,15 +16,6 @@ interface Category {
   description?: string;
 }
 
-const categoryIcons: Record<string, string> = {
-  'programming': '💻',
-  'ai-ml': '🤖',
-  'gadgets': '📱',
-  'cybersecurity': '🔒',
-  'tools': '🛠️',
-  'backend': '⚙️',
-  'javascript': '📜',
-};
 
 export default async function CategoriesPage() {
   const { data: categories } = await getCategories();
@@ -44,7 +35,6 @@ export default async function CategoriesPage() {
                 href={`/categories/${cat.slug}`}
                 className="category-card-link"
               >
-                <span style={{ marginRight: 8 }}>{categoryIcons[cat.slug] || '📂'}</span>
                 {cat.name}
                 {cat.description && (
                   <div style={{ fontSize: 12, fontWeight: 'normal', marginTop: 4 }}>{cat.description}</div>

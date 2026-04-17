@@ -647,21 +647,36 @@ footer a:visited { color: #ffff00; }
 
 @media (max-width: 480px) {
   .flex-list-item {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
   }
   .article-thumb img {
-    width: 100% !important;
-    max-width: 200px;
-    height: auto !important;
-    aspect-ratio: 1/1;
+    width: 72px !important;
+    height: 72px !important;
+    object-fit: cover;
+    flex-shrink: 0;
   }
   .article-details {
-    width: 100%;
-    text-align: center;
+    flex: 1;
+    min-width: 0;
+    text-align: left;
   }
   .article-actions {
-    text-align: center !important;
+    text-align: left !important;
+  }
+  .article-excerpt {
+    -webkit-line-clamp: 3;
+    font-size: 12px;
+  }
+  .article-meta {
+    font-size: 10px;
+  }
+  .win-box-title span {
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
