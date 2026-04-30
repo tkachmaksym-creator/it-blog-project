@@ -216,6 +216,13 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 | `generate_lead` | `LeadCaptureForm.tsx` — submit форми інтересу | `form_name`, `page_type`, `has_message` | Основна lead-подія для trust/контактного сценарію | ✅ видно з `has_message` |
 | `form_submit` | `LeadCaptureForm.tsx` — submit форми | `form_name`, `page_type` | Технічне підтвердження завершення форми | ✅ видно з `form_name` |
 
+**Доказ DebugView:**
+
+Після ручної перевірки на live URL у GA4 DebugView зафіксовано спрацювання нових SEO-подій після взаємодії з hero
+CTA, внутрішнім пошуком і lead-формою на `/about`. Це підтверджує коректну передачу client-side подій у GA4.
+
+![GA4 DebugView evidence](images/ga4.png)
+
 **Утиліта `lib/analytics.ts`:**
 ```typescript
 export const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? '';
