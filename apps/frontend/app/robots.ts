@@ -4,11 +4,21 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://frontend-productio
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: '/admin/',
-    },
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: '/admin/',
+      },
+      {
+        userAgent: 'facebookexternalhit',
+        allow: '/',
+      },
+      {
+        userAgent: 'Facebot',
+        allow: '/',
+      },
+    ],
     sitemap: `${BASE_URL}/sitemap.xml`,
   };
 }
