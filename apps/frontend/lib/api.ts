@@ -45,3 +45,15 @@ export async function getAuthorArticles(slug: string) {
   if (!res.ok) return { data: [] };
   return res.json();
 }
+
+export async function getTags() {
+  const res = await fetch(`${API_URL}/api/tags`, { next: { revalidate: 3600 } });
+  if (!res.ok) return { data: [] };
+  return res.json();
+}
+
+export async function getTagArticles(slug: string) {
+  const res = await fetch(`${API_URL}/api/tags/${slug}/articles`, { next: { revalidate: 60 } });
+  if (!res.ok) return { data: [] };
+  return res.json();
+}
