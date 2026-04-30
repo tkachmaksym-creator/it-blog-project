@@ -1,6 +1,7 @@
 import { getArticles } from '@/lib/api';
 import ArticleList from './components/ArticleList';
 import HomeSidebar from './components/HomeSidebar';
+import HomeCTA from './components/HomeCTA';
 
 export const revalidate = 300;
 
@@ -16,6 +17,7 @@ export default async function HomePage() {
           </div>
           <div className="win-box-body">
             <p>Свіжі записи, навчальні нотатки й технічні огляди від команди ІПЗ.</p>
+            <HomeCTA />
           </div>
         </section>
         <ArticleList articles={articles} />

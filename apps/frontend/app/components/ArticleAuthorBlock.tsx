@@ -1,5 +1,7 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { trackEvent } from '@/lib/analytics';
 
 function formatDate(dateStr?: string) {
   if (!dateStr) return '';
@@ -17,6 +19,7 @@ interface ArticleAuthorBlockProps {
   avatarUrl?: string;
   publishedAt?: string;
   updatedAt?: string;
+  articleSlug?: string;
 }
 
 export default function ArticleAuthorBlock({
@@ -26,6 +29,7 @@ export default function ArticleAuthorBlock({
   avatarUrl,
   publishedAt,
   updatedAt,
+  articleSlug,
 }: ArticleAuthorBlockProps) {
   if (!name || !slug) return null;
 
@@ -35,7 +39,13 @@ export default function ArticleAuthorBlock({
         <Image src={avatarUrl} alt={name} width={64} height={64} />
       )}
       <div>
-        <Link href={`/authors/${slug}`} className="author-block-name">
+        <Link
+          href={`/authors/${slug}`}
+          className="author-block-name"
+          onClick={() =>
+            trackEvent('click_author_profile', { author_slug: slug, article_slug: articleSlug })
+          }
+        >
           {name}
         </Link>
         {bio && <div className="author-block-bio">{bio}</div>}

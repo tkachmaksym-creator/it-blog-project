@@ -6,6 +6,7 @@ import ArticleAuthorBlock from '@/app/components/ArticleAuthorBlock';
 import ArticleBreadcrumbs from '@/app/components/ArticleBreadcrumbs';
 import ArticleHeroImage from '@/app/components/ArticleHeroImage';
 import ArticleTags from '@/app/components/ArticleTags';
+import ArticleTracker from '@/app/components/ArticleTracker';
 import JsonLd from '@/app/components/JsonLd';
 import RelatedArticles from '@/app/components/RelatedArticles';
 import type { ArticleDetail } from '@/lib/types';
@@ -111,6 +112,7 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <div className="article-content">
+      <ArticleTracker slug={article.slug} category={article.category_slug} />
       <JsonLd data={articleJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
       <ArticleBreadcrumbs
@@ -146,8 +148,13 @@ export default async function ArticlePage({ params }: Props) {
         avatarUrl={article.author_avatar_url}
         publishedAt={article.published_at}
         updatedAt={article.updated_at}
+        articleSlug={article.slug}
       />
-      <RelatedArticles articles={related.data} />
+      <RelatedArticles
+        articles={related.data}
+        currentSlug={article.slug}
+        category={article.category_slug}
+      />
     </div>
   );
 }

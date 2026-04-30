@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Script from 'next/script';
 import './globals.css';
 
 import Navbar from './components/Navbar';
+
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? '';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://frontend-production-0907.up.railway.app'),
@@ -80,6 +83,22 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href="https://github.com/tkachmaksym-creator/it-blog-project" target="_blank" rel="noopener noreferrer">GitHub</a>
           </p>
         </footer>
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', { debug_mode: true });
+              `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

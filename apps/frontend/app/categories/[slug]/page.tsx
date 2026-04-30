@@ -1,46 +1,52 @@
 import { getCategoryArticles } from '@/lib/api';
 import type { Metadata } from 'next';
 import ArticleList from '@/app/components/ArticleList';
+import CategoryPageTracker from '@/app/components/CategoryPageTracker';
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://frontend-production-0907.up.railway.app';
+
+const categoryNames: Record<string, string> = {
+  programming: 'Програмування',
+  'ai-ml': 'Штучний інтелект та ML',
+  backend: 'Backend розробка',
+  gadgets: 'Пристрої та гаджети',
+  cybersecurity: 'Інформаційна безпека',
+  tools: 'Інструменти розробника',
+};
 
 interface Props {
   params: { slug: string };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const name = categoryNames[params.slug] || params.slug;
+  const title = `${name} — статті ІПЗ-педії`;
+  const description = `Вибрані статті про ${name.toLowerCase()} від команди ІПЗ-педії. Програмування, технології та IT у ЧНУ.`;
   return {
-    title: `Категорія: ${params.slug}`,
-    description: `Статті у категорії ${params.slug} на IT Blog`,
+    title,
+    description,
     alternates: {
       canonical: `/categories/${params.slug}`,
     },
     openGraph: {
-      title: `Категорія: ${params.slug}`,
-      description: `Статті у категорії ${params.slug} на IT Blog`,
+      title,
+      description,
       url: `${BASE_URL}/categories/${params.slug}`,
       type: 'website',
+      images: [{ url: `${BASE_URL}/favicon.png`, width: 400, height: 400 }],
     },
   };
 }
 
 export const revalidate = 60;
 
-const categoryNames: Record<string, string> = {
-  'programming': 'Програмування',
-  'ai-ml': 'Штучний інтелект',
-  'backend': 'Backend',
-  'gadgets': 'Пристрої',
-  'cybersecurity': 'Інформаційна безпека',
-  'tools': 'Інструменти'
-};
-
 export default async function CategoryPage({ params }: Props) {
-  const { data: articles, meta } = await getCategoryArticles(params.slug);
+  const { data: articles } = await getCategoryArticles(params.slug);
   const categoryTitle = categoryNames[params.slug] || params.slug;
 
   return (
     <div className="win-box">
+      <CategoryPageTracker slug={params.slug} name={categoryTitle} />
       <div className="win-box-title">
         <span>Розділ: {categoryTitle}</span>
       </div>

@@ -157,7 +157,9 @@ header {
   display: none;
   width: auto; /* Shrink to fit text */
   margin: 0;
-  padding: 3px 8px 3px 6px;
+  padding: 10px 14px 10px 10px;
+  min-height: 44px;
+  min-width: 44px;
   background: #c0c0c0;
   border-top: 2px solid #ffffff;
   border-left: 2px solid #ffffff;
