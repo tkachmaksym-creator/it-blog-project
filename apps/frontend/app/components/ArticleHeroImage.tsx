@@ -17,6 +17,7 @@ export default function ArticleHeroImage({ src, alt }: ArticleHeroImageProps) {
         height={506}
         sizes="(max-width: 768px) 100vw, 900px"
         priority
+        quality={72}
       />
     </div>
   );

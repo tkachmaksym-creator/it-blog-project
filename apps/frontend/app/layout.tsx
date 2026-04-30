@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import Script from 'next/script';
 import './globals.css';
 
@@ -51,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="header-top">
               <div className="logo-group">
                 <Image src="/images/logo.png" alt="IPZ Logo" width={40} height={40} priority style={{ imageRendering: 'pixelated' }} />
-                <a href="/" className="site-logo">ІПЗ-педія</a>
+                <Link href="/" className="site-logo">ІПЗ-педія</Link>
               </div>
               <div className="site-tagline">
                 Спеціальність ІПЗ | ІФТКН<br />
@@ -77,9 +78,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <p>
             © 2026 <strong>ІПЗ-педія</strong> | ІФТКН | Кафедра ПЗКС (Спеціальність ІПЗ) | ЧНУ
           </p>
-          <p style={{ marginTop: 4 }}>
-            <a href="/about">Про нас</a> |{' '}
-            <a href="mailto:admin@ipzpedia.pp.ua">admin@ipzpedia.pp.ua</a> |{' '}
+          <p className="footer-links">
+            <Link href="/about">Про нас</Link>
+            <a href="mailto:admin@ipzpedia.pp.ua">admin@ipzpedia.pp.ua</a>
             <a href="https://github.com/tkachmaksym-creator/it-blog-project" target="_blank" rel="noopener noreferrer">GitHub</a>
           </p>
         </footer>

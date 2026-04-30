@@ -8,6 +8,20 @@
     "start": "next start -p ${PORT:-3000}",
     "lint": "next lint"
   },
+  "browserslist": {
+    "production": [
+      "chrome >= 120",
+      "edge >= 120",
+      "firefox >= 121",
+      "safari >= 17",
+      "ios_saf >= 17"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
     "next": "^14.2.35",
     "react": "^18",
@@ -17,6 +31,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "critters": "^0.0.23",
     "typescript": "^5"
   }
 }

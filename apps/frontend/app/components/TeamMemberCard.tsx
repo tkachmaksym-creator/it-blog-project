@@ -45,12 +45,11 @@ export default function TeamMemberCard({ member }: { member: TeamMember }) {
         </p>
         <p className="author-block-bio">{member.bio}</p>
         {member.links.length > 0 && (
-          <div style={{ marginTop: 8 }}>
+          <div className="team-links">
             {member.links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                style={{ fontSize: '12px', color: '#0000ee', marginRight: 10 }}
                 target="_blank"
                 rel="noopener noreferrer"
               >

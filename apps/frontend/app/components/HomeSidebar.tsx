@@ -20,11 +20,11 @@ export default function HomeSidebar() {
           <span>Літопис (Архів)</span>
         </div>
         <div className="win-box-body">
-          <ul style={{ listStyleType: 'square', marginLeft: '16px', lineHeight: '1.8' }}>
-            <li><a href="/">Квітень 2026</a></li>
-            <li><a href="/">Березень 2026</a></li>
-            <li><a href="/">Лютий 2026</a></li>
-            <li><a href="/">Січень 2026</a></li>
+          <ul className="archive-list">
+            <li><Link href="/">Квітень 2026</Link></li>
+            <li><Link href="/">Березень 2026</Link></li>
+            <li><Link href="/">Лютий 2026</Link></li>
+            <li><Link href="/">Січень 2026</Link></li>
           </ul>
         </div>
       </div>
@@ -33,10 +33,10 @@ export default function HomeSidebar() {
         <div className="win-box-title">
           <span>Дружні вузли</span>
         </div>
-        <div className="win-box-body">
-          <a href="https://chnu.edu.ua/" target="_blank" rel="noreferrer" style={{ display: 'block', marginBottom: '4px' }}>ЧНУ ім. Ю. Федьковича</a>
-          <a href="https://nextjs.org/" target="_blank" rel="noreferrer" style={{ display: 'block', marginBottom: '4px' }}>Каркас Next.js</a>
-          <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer" style={{ display: 'block' }}>СКБД PostgreSQL</a>
+        <div className="win-box-body resource-links">
+          <a href="https://chnu.edu.ua/" target="_blank" rel="noreferrer">ЧНУ ім. Ю. Федьковича</a>
+          <a href="https://nextjs.org/" target="_blank" rel="noreferrer">Каркас Next.js</a>
+          <a href="https://www.postgresql.org/" target="_blank" rel="noreferrer">СКБД PostgreSQL</a>
         </div>
       </div>
     </aside>

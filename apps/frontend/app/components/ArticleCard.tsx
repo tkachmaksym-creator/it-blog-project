@@ -29,10 +29,11 @@ export default function ArticleCard({ article, priority = false }: ArticleCardPr
               <Image
                 src={article.cover_url}
                 alt={article.title}
-                width={120}
-                height={120}
-                sizes="(max-width: 480px) 200px, 120px"
+                width={144}
+                height={136}
+                sizes="(max-width: 480px) 72px, 144px"
                 priority={priority}
+                quality={65}
               />
             </div>
           )}

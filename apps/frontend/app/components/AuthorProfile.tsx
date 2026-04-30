@@ -29,7 +29,7 @@ export default function AuthorProfile({ author, articlesCount }: AuthorProfilePr
               <p style={{ color: '#000000', marginBottom: '8px', fontSize: 13 }}>{author.bio}</p>
             )}
 
-            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '10px' }}>
+            <div className="profile-links">
               {author.linkedin_url && (
                 <a href={author.linkedin_url} target="_blank" rel="noopener noreferrer">
                   [ LinkedIn ]
