@@ -55,9 +55,19 @@
 
 Докази:
 
+![GSC Verified](images/gsc_verified.png)
+
 ![GSC Sitemap](images/gsc_sitemap.png)
 
 ![Sitemap](images/sitemap.png)
+
+### Підтвердження ресурсу та індексації в GSC
+
+- Ресурс `https://frontend-production-0907.up.railway.app` підтверджено в Google Search Console через HTML meta tag.
+- Після підтвердження було подано `sitemap.xml`, що дозволило Google коректно зчитувати набір публічних URL.
+- Перевірка URL Inspection для головної сторінки показує статус `URL-адреса є в Google` / `URL is on Google`, а також коректну віддачу сторінки через HTTPS.
+
+![GSC URL Inspection](images/gsc_url_inspection.png)
 
 ---
 

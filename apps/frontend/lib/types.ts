@@ -4,6 +4,7 @@ export interface Tag {
 }
 
 export interface ArticleSummary {
+  id?: number;
   slug: string;
   title: string;
   excerpt?: string;
@@ -35,4 +36,8 @@ export interface Author {
   linkedin_url?: string;
   github_url?: string;
   articles_count?: number;
+}
+
+export interface SearchResponse {
+  data: ArticleSummary[];
 }

@@ -1,20 +1,33 @@
+'use client';
 import Link from 'next/link';
-import { getTags } from '@/lib/api';
-import type { Tag } from '@/lib/types';
+import { trackEvent } from '@/lib/analytics';
 
-export default async function HomeCTA() {
-  const { data: tags }: { data: Tag[] } = await getTags();
-  const featured = tags.slice(0, 5);
+const featuredCategories = [
+  { slug: 'programming', label: 'Програмування' },
+  { slug: 'ai-ml', label: 'AI та ML' },
+  { slug: 'gadgets', label: 'Пристрої' },
+  { slug: 'cybersecurity', label: 'Безпека' },
+];
 
-  if (!featured.length) return null;
-
+export default function HomeCTA() {
   return (
     <div style={{ marginTop: '10px' }}>
-      <span style={{ fontSize: '12px', color: '#444', marginRight: '6px' }}>Мітки:</span>
+      <span style={{ fontSize: '12px', color: '#444', marginRight: '6px' }}>Швидкий перехід:</span>
       <div style={{ display: 'inline-flex', gap: '6px', flexWrap: 'wrap' }}>
-        {featured.map((tag) => (
-          <Link key={tag.slug} href={`/tags/${tag.slug}`} className="win-btn">
-            #{tag.name}
+        {featuredCategories.map((category) => (
+          <Link
+            key={category.slug}
+            href={`/categories/${category.slug}`}
+            className="win-btn"
+            onClick={() =>
+              trackEvent('click_cta_primary', {
+                page_type: 'home',
+                cta_label: category.label,
+                destination_category: category.slug,
+              })
+            }
+          >
+            {category.label}
           </Link>
         ))}
       </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import TeamMemberCard, { type TeamMember } from '../components/TeamMemberCard';
+import LeadCaptureForm from '../components/LeadCaptureForm';
 
 export const metadata: Metadata = {
   title: 'Про нас',
@@ -83,6 +84,8 @@ export default function AboutPage() {
           <div style={{ background: '#f0f0f0', border: '1px solid #808080', padding: 8, marginTop: 16, fontSize: 12, color: '#333' }}>
             <strong>Зауваження:</strong> Цей сайт знаходиться у стадії розробки. Якщо ви знайшли помилку або маєте пропозиції - пишіть нам на GitHub!
           </div>
+
+          <LeadCaptureForm />
         </div>
       </div>
     </div>

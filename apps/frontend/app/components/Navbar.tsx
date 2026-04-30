@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { useRef } from 'react';
+import SearchForm from './SearchForm';
 
 const navItems = [
   { href: '/', label: 'Головна' },
@@ -23,6 +24,7 @@ export default function Navbar() {
     <nav className="navbar">
       <input ref={toggleRef} id="nav-menu-toggle" className="nav-menu-toggle" type="checkbox" aria-label="Відкрити меню" />
       <label className="nav-toggle-btn" htmlFor="nav-menu-toggle">Меню</label>
+      <SearchForm />
       <div className="nav-links">
         {navItems.map((item) => (
           <Link key={item.href} href={item.href} onClick={closeMenu}>{item.label}</Link>

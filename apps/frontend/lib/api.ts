@@ -57,3 +57,14 @@ export async function getTagArticles(slug: string) {
   if (!res.ok) return { data: [] };
   return res.json();
 }
+
+export async function searchArticles(query: string) {
+  const trimmed = query.trim();
+  if (!trimmed) return { data: [] };
+
+  const res = await fetch(`${API_URL}/api/search?q=${encodeURIComponent(trimmed)}`, {
+    next: { revalidate: 60 },
+  });
+  if (!res.ok) return { data: [] };
+  return res.json();
+}

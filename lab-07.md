@@ -26,7 +26,7 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 | 2. Поведінкові показники | 2.1 GSC | GSC Export 28 днів + нормативні benchmark'и | Змішано | GSC CSV |
 | 2. Поведінкові показники | 2.2 GA4 | GA4 після впровадження подій + Demo Property benchmark | Змішано | DebugView скрини |
 | 2. Поведінкові показники | 2.3–2.4 | Intent-аналіз + мікроконверсії | Локально | Аналітична таблиця |
-| 3. GA4 | 3.1–3.4 | GA4 property, 6 подій у коді, conversions, audiences, weekly report | Локально | DebugView + Admin |
+| 3. GA4 | 3.1–3.4 | GA4 property, 10 подій у коді, conversions, audiences, weekly report | Локально | DebugView + Admin |
 | 4. SEO-аудит | 4.1–4.4 | Backlog 12 задач, матриця, roadmap, executive summary | Локально | Таблиці у звіті |
 
 ---
@@ -44,14 +44,18 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 | `/articles/docker-basics-for-developers` | article | Інформаційний | 22 | 2.2% | 57% | Довгий dwell, слабкий перехід у категорію | High |
 | `/articles/ai-tools-for-programmers-2025` | article | Інформаційний | 31 | 3.1% | 68% | Найкращий engagement на сайті | High |
 | `/articles/cybersecurity-basics-for-students` | article | Інформаційний | 18 | 1.9% | 52% | Рання відмова — intent mismatch у title | Medium |
-| `/categories/programming` | category | Навігаційний | 24 | 1.4% | 44% | Немає опису категорії → низький engagement | High |
-| `/categories/ai-ml` | category | Навігаційний | 17 | 1.6% | 46% | Шаблонна сторінка без унікального контенту | Medium |
-| `/categories/cybersecurity` | category | Навігаційний | 12 | 1.3% | 41% | Немає intro-тексту, лише список | Medium |
+| `/categories/programming` | category | Навігаційний | 24 | 1.4% | 44% | Intro-текст додано, але engagement ще нижчий за home/article | High |
+| `/categories/ai-ml` | category | Навігаційний | 17 | 1.6% | 46% | Metadata і intro-текст виправлені, потрібен повторний замір | Medium |
+| `/categories/cybersecurity` | category | Навігаційний | 12 | 1.3% | 41% | Intro-текст додано, але сторінка ще молода за даними GSC/GA4 | Medium |
 | `/categories/tools` | category | Навігаційний | 9 | 1.1% | 38% | Найслабший engagement, мало статей | Low |
 | `/authors/admin` | author | Навігаційний | 8 | 0.9% | 35% | Мінімальна bio, немає trust-елементів | Low |
-| `/about` | static | Навігаційний | 14 | 1.0% | 42% | Текст без фото, без CTA | Medium |
+| `/about` | static | Навігаційний | 14 | 1.0% | 42% | Trust-блок посилено фото та профілями, але CTA окремо немає | Medium |
 
-**Розподіл:** 6 інформаційних, 4 категорійні/навігаційні, 3 транзакційні/цільові.
+**Розподіл:** 6 інформаційних, 4 категорійні/навігаційні, 3 цільові/trust URL (`/`, `/about`, `/authors/admin`).
+
+Для контентного SEO-проєкту без checkout- або purchase-сценаріїв роль цільових сторінок у межах цієї лабораторної
+трактується як trust/navigation endpoints, які ведуть до мікроконверсій: CTA на категорії, пошук по сайту, профіль
+автора, форма зворотного зв'язку.
 
 ---
 
@@ -59,12 +63,12 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 
 | URL | Match Title/H1/intent | Чітка цінність 3-5 с | Помітний CTA | Елементи довіри | Mobile UX | Висновок |
 |-----|-----------------------|----------------------|--------------|-----------------|-----------|----------|
-| `/` | Частково — H1 є, підзаголовок розмитий | Ні — до Quick Win QW-2 | Так (після QW-2) | Слабко — тільки назва блогу | ⚠ Кнопка "Меню" < 44px (до QW-3) | QW-2 і QW-3 впроваджено |
+| `/` | Частково — H1 є, підзаголовок розмитий | Так (після QW-2) — додано швидкі CTA у категорії | Так (після QW-2) | Слабко — тільки назва блогу | ⚠ Кнопка "Меню" < 44px (до QW-3) | QW-2 і QW-3 впроваджено |
 | `/articles/y2k-windows-style-review` | Так — H1 збігається з title | Так — cover image + H1 одразу | Слабо — лише related внизу | Є автор, дата, перегляди | OK | Потрібен CTA після статті |
 | `/articles/javascript-promises-explained` | Так — H1 чіткий і технічний | Так | Ні — немає CTA | Є автор і дата | OK | Додати CTA до related |
-| `/categories/programming` | Частково — "Категорія: Програмування" без пояснення | Ні — одразу список статей | Ні | Ні | OK | Потрібен intro-текст (стратегічна задача) |
-| `/categories/ai-ml` | Так (після QW-1) — "Штучний інтелект та ML — статті ІПЗ-педії" | Ні — немає intro | Ні | Ні | OK | Те саме — intro потрібен |
-| `/about` | Так — H1 "Що таке ІПЗ-педія?" | Частково | Ні | Слабо — без фото | Прийнятно | Потрібні фото команди + CTA |
+| `/categories/programming` | Так — є H1 і пояснювальний intro | Частково | Ні | Ні | OK | Intro-текст додано, далі міряти engagement |
+| `/categories/ai-ml` | Так (після QW-1) — "Штучний інтелект та ML — статті ІПЗ-педії" | Частково — intro додано, але CTA немає | Ні | Ні | OK | Наступний крок — посилити внутрішню навігацію |
+| `/about` | Так — H1 "Що таке ІПЗ-педія?" | Частково | Ні | Є фото команди і зовнішні профілі | Прийнятно | Trust-блок посилено, окремий CTA не критичний |
 
 **Mobile UX (44px):** виправлено у QW-3 — кнопка "Меню" збільшена до `min-height: 44px; min-width: 44px`.
 
@@ -74,16 +78,16 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 
 | № | URL | Проблема | Категорія | Вплив на SEO | Severity | Гіпотеза виправлення |
 |---|-----|----------|-----------|--------------|----------|----------------------|
-| 1 | `/` | Відсутній CTA у hero-блоці — нові відвідувачі не знають куди йти | Usability | Вищий bounce, нижчий engaged rate | High | **QW-2 впроваджено** — кнопки категорій у hero |
+| 1 | `/` | До quick win не було CTA у hero-блоці — нові відвідувачі не знали куди йти | Usability | Вищий bounce, нижчий engaged rate | High | **QW-2 впроваджено** — кнопки категорій у hero + event `click_cta_primary` |
 | 2 | `/` | Кнопка "Меню" на mobile < 44px (32px height) | Usability (Mobile) | Поганий mobile UX → нижчий mobile engagement | Medium | **QW-3 впроваджено** — `min-height: 44px` |
 | 3 | `/categories/[slug]` | Meta title використовував технічний slug ("Категорія: ai-ml") | Relevance | Низький CTR у Google SERP | High | **QW-1 впроваджено** — людська назва у title |
 | 4 | `/categories/[slug]` | Немає `og:image` — сірий прямокутник при шерингу | Trust | Менший CTR із соцмереж | Medium | **QW-4 впроваджено** — `og:image` додано |
-| 5 | `/categories/[slug]` | Немає унікального описового тексту — лише заголовок і список | Relevance | Тонкий контент → погана індексація | High | Додати `description` поле в БД і відобразити (стратегічна задача) |
+| 5 | `/categories/[slug]` | Раніше не було унікального описового тексту — лише заголовок і список | Relevance | Тонкий контент → погана індексація | High | **Впроваджено частково** — додано intro-тексти у frontend; окреме поле в БД лишається стратегічним покращенням |
 | 6 | `/articles/[slug]` | Немає CTA після прочитання статті | Usability | Короткий dwell після кінця читання | Medium | Додати "Читайте також у категорії [X]" блок |
 | 7 | `/articles/why-ipz-is-the-best` | Стаття < 400 слів, title обіцяє більше | Relevance | Pogo-sticking, dwell 0:52 | High | Розширити до 800+ слів з аргументами |
 | 8 | `/authors/[slug]` | Мінімальна або відсутня bio, немає аватара | Trust | Низький E-E-A-T сигнал | Medium | Заповнити bio та аватари для всіх авторів |
-| 9 | Усі сторінки | Немає внутрішнього пошуку на фронтенді (API є) | Navigation | Bounce при пошуку контенту | Medium | Реалізувати `/search` з input у navbar |
-| 10 | `/about` | Сторінка без фото команди та E-E-A-T контенту | Trust | Низька довіра, мало часу | Medium | Додати фото, посилання на GitHub/LinkedIn |
+| 9 | Усі сторінки | Раніше не було внутрішнього пошуку на фронтенді, хоча API вже існував | Navigation | Bounce при пошуку контенту | Medium | **Виправлено** — додано `/search`, поле пошуку в navbar і event `view_search_results` |
+| 10 | `/about` | Раніше сторінка була слабкою за trust-сигналами | Trust | Низька довіра, мало часу | Medium | **Виправлено** — додано фото команди, ролі та посилання GitHub/LinkedIn |
 | 11 | Усі статті | Відсутня кнопка "Поділитися" | Navigation | Менше природних backlinks | Low | Додати Share кнопки |
 | 12 | `/categories/tools`, `/gadgets` | По 1-2 статті — сторінки виглядають порожньо | Relevance | Тонкий контент на категоріях | High | Додати 3-5 статей у кожну малу категорію |
 
@@ -125,14 +129,14 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 
 | Landing page | Organic sessions | Engaged sessions | Engagement rate | Avg engagement time | Key events | Висновок |
 |--------------|------------------|------------------|-----------------|---------------------|------------|----------|
-| `/` | 42 | 26 | 61.9% | 00:01:15 | `click_cta_primary` (34% після QW-2) | CTA збільшив перехід у категорії |
+| `/` | 42 | 26 | 61.9% | 00:01:15 | `click_cta_primary` після QW-2 винесено в окремий event | CTA винесено у first screen, потрібен повторний замір |
 | `/articles/ai-tools-for-programmers-2025` | 31 | 21 | 67.7% | 00:02:48 | `scroll_75` (62%), `click_related_article` (28%) | Найякісніший трафік |
 | `/articles/javascript-promises-explained` | 35 | 22 | 62.9% | 00:02:12 | `scroll_75` (54%), `click_related_article` (14%) | Хороший контент, мало переходів |
 | `/articles/docker-basics-for-developers` | 22 | 13 | 59.1% | 00:01:54 | `scroll_75` (48%) | Середній engagement |
 | `/articles/y2k-windows-style-review` | 28 | 15 | 53.6% | 00:01:42 | `scroll_75` (41%), `click_related_article` (11%) | Нішева аудиторія читає |
 | `/articles/why-ipz-is-the-best` | 19 | 9 | 47.4% | 00:00:52 | `scroll_75` (22%) | ⚠ Короткий dwell — треба розширити контент |
-| `/categories/programming` | 24 | 11 | 45.8% | 00:00:48 | `view_category_page`, `click_article` (58%) | Низький engagement — немає intro |
-| `/about` | 14 | 6 | 42.9% | 00:00:36 | — | Найнижчий — потрібен редизайн |
+| `/categories/programming` | 24 | 11 | 45.8% | 00:00:48 | `view_category_page`, `click_article` (58%) | Intro вже додано, потрібен повторний замір |
+| `/about` | 14 | 6 | 42.9% | 00:00:36 | — | Trust-сигнали вже посилено, далі потрібен повторний замір |
 
 ---
 
@@ -142,9 +146,9 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 |-----|------------|----------------------------|--------------|--------------------|-----------|
 | `/articles/ai-tools-for-programmers-2025` | Інформаційний | 68% engaged, `scroll_75` у 62% | Довгий (2:48) | Нормально | Додати CTA після статті |
 | `/articles/why-ipz-is-the-best` | Інформаційний | 47% engaged, `scroll_75` лише 22% | Короткий (0:52) | ⚠ Ризик pogo-sticking | Розширити контент до 800+ слів |
-| `/categories/programming` | Навігаційний | Bounce high, але 58% кликають статтю | Дуже короткий (0:48) | Нормально для nav intent | Додати category description |
-| `/` | Навігаційний / TOFU | 62% engaged, 34% клікнули CTA | Середній (1:15) | Нормально | CTA впроваджено — моніторити |
-| `/about` | Навігаційний | 43% engaged, bounce 57% | Дуже короткий (0:36) | ⚠ Ризик — не виконує trust-функцію | Редизайн: фото + посилання |
+| `/categories/programming` | Навігаційний | Bounce high, але 58% кликають статтю | Дуже короткий (0:48) | Нормально для nav intent | Intro-текст уже додано, потрібен повторний замір |
+| `/` | Навігаційний / TOFU | 62% engaged, CTA на категорії винесено у first screen | Середній (1:15) | Нормально | CTA впроваджено — моніторити `click_cta_primary` |
+| `/about` | Навігаційний | 43% engaged, bounce 57% | Дуже короткий (0:36) | Помірний ризик, але trust-сигнали вже посилено | Спостерігати після оновлення сторінки |
 | `/articles/cybersecurity-basics-for-students` | Інформаційний | 50% engaged, `scroll_75` 33% | Середній (1:08) | Помірний ризик | Перевірити відповідність title→content |
 
 ---
@@ -156,8 +160,11 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 | Скрол 75% статті | `scroll_75` | `/articles/*` — `ArticleTracker` | Підтверджує якість контенту | 41% сесій (avg) | 55% сесій |
 | Завершене читання | `article_read_complete` | `/articles/*` — `ArticleTracker` (scroll ≥ 90% + час ≥ 60s) | Найсильніший сигнал якості | ~12% сесій | 20% сесій |
 | Клік на пов'язану статтю | `click_related_article` | `RelatedArticles` компонент | Глибина сесії | 18% сесій | 28% сесій |
-| Клік на CTA головної | `click_cta_primary` | `HomeCTA` компонент | Перехід з home у категорії | 34% сесій (після QW-2) | 45% сесій |
+| Клік на CTA головної | `click_cta_primary` | `HomeCTA` компонент | Перехід з home у категорії | Після впровадження відстежується в GA4 DebugView | 45% сесій |
 | Клік на профіль автора | `click_author_profile` | `ArticleAuthorBlock` компонент | E-E-A-T сигнал | 8% сесій | 15% сесій |
+| Перегляд результатів пошуку | `view_search_results` | `/search` — `SearchResultsTracker` | Показує, чи користувач знаходить релевантний контент через внутрішній пошук | Після впровадження видно у DebugView | 20+ подій / 30 днів |
+| Початок взаємодії з формою | `form_start` | `/about` — `LeadCaptureForm` | Ранній сигнал наміру взаємодії з командою | Після впровадження видно у DebugView | 10+ подій / 30 днів |
+| Лід / відправка форми | `generate_lead`, `form_submit` | `/about` — `LeadCaptureForm` | Цільова мікроконверсія для trust/lead сценарію | Після впровадження видно у DebugView | 3–5 подій / 30 днів |
 
 ---
 
@@ -194,16 +201,20 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 
 ### 3.2 Події для SEO-оцінки
 
-Реалізовано 6 подій через код (Next.js + `lib/analytics.ts`):
+Реалізовано 10 подій через код (Next.js + `lib/analytics.ts`):
 
 | Event name | Де реалізовано | Параметри | Бізнес/SEO сенс | DebugView |
 |------------|----------------|-----------|------------------|----|
 | `scroll_75` | `ArticleTracker.tsx` — scroll listener ≥ 75% | `article_slug`, `category` | Підтверджує якість контенту | ✅ видно з параметрами |
 | `article_read_complete` | `ArticleTracker.tsx` — scroll ≥ 90% + час ≥ 60s | `article_slug`, `category`, `read_time_s` | Найсильніший сигнал завершеного читання | ✅ видно з `read_time_s` |
-| `click_cta_primary` | `HomeCTA.tsx` — onClick на кнопках категорій | `page_type`, `cta_label`, `destination_category` | Чи рухається користувач до цілі з home | ✅ видно з `cta_label` |
+| `click_cta_primary` | `HomeCTA.tsx` — onClick на кнопках категорій | `page_type`, `cta_label`, `destination_category` | Чи рухається користувач до цілі з home | ✅ реалізовано, перевіряється через DebugView |
 | `click_related_article` | `RelatedArticles.tsx` — onClick на посиланнях | `from_slug`, `related_slug`, `category` | Глибина сесії після читання | ✅ видно з `related_slug` |
 | `click_author_profile` | `ArticleAuthorBlock.tsx` — onClick на автора | `author_slug`, `article_slug` | E-E-A-T сигнал | ✅ видно з `author_slug` |
 | `view_category_page` | `CategoryPageTracker.tsx` — useEffect на mount | `category_slug`, `category_name` | Ефективність навігаційних сторінок | ✅ видно з `category_name` |
+| `view_search_results` | `SearchResultsTracker.tsx` — useEffect на `/search?q=...` | `search_term`, `results_count` | Чи використовують користувачі внутрішній пошук і чи знаходять контент | ✅ видно з `results_count` |
+| `form_start` | `LeadCaptureForm.tsx` — first focus у форму на `/about` | `form_name`, `page_type` | Ранній сигнал наміру взаємодії | ✅ видно з `form_name` |
+| `generate_lead` | `LeadCaptureForm.tsx` — submit форми інтересу | `form_name`, `page_type`, `has_message` | Основна lead-подія для trust/контактного сценарію | ✅ видно з `has_message` |
+| `form_submit` | `LeadCaptureForm.tsx` — submit форми | `form_name`, `page_type` | Технічне підтвердження завершення форми | ✅ видно з `form_name` |
 
 **Утиліта `lib/analytics.ts`:**
 ```typescript
@@ -222,6 +233,7 @@ export function trackEvent(name: string, params?: Record<string, unknown>) {
 | Тип | Назва | Умова | Навіщо |
 |-----|-------|-------|--------|
 | Conversion | `article_read_complete` | event_name = article_read_complete | Оцінка якості контенту — завершені читання з органіки |
+| Conversion | `generate_lead` | event_name = generate_lead + page_type = about | Мікроконверсія trust/lead-сценарію для контентного сайту |
 | Conversion | `click_cta_primary` | event_name = click_cta_primary + page_type = home | Перехід з головної у категорії — навігаційна цінність |
 | Audience | Organic Engaged Users | session_medium = organic + engagement_time > 60s | Ремаркетинг на якісних відвідувачів |
 | Audience | Organic Non-Engaged | session_medium = organic + engagement_time < 15s + session_count = 1 | Аналіз проблемного трафіку |
@@ -250,17 +262,18 @@ export function trackEvent(name: string, params?: Record<string, unknown>) {
 | Issue | Evidence | Impact | Effort | Owner | Deadline | Success criteria |
 |-------|----------|--------|--------|-------|----------|------------------|
 | Мета-теги категорій використовували технічний slug | Код `generateMetadata` у `/categories/[slug]/page.tsx` | CTR на категоріях +0.5–0.8 п.п. | S | Frontend | **Done ✅** | Title відображає людську назву |
-| Відсутній CTA у hero-блоці | `page.tsx` — тільки заголовок без дії | Engagement rate головної +10 п.п. | S | Frontend | **Done ✅** | `click_cta_primary` ≥ 30% сесій |
+| Відсутній CTA у hero-блоці | `page.tsx` — тільки заголовок без дії | Engagement rate головної +10 п.п. | S | Frontend | **Done ✅** | Категорійні CTA додані у first screen, `click_cta_primary` збирається |
 | Mobile tap target "Меню" < 44px | DevTools — height 32px | Mobile UX / Lighthouse Accessibility | S | Frontend | **Done ✅** | Tap target ≥ 44px |
 | `og:image` відсутній на категоріях | Meta Debugger — немає OG image | CTR із соцмереж / шеринг | S | Frontend | **Done ✅** | OG image видно в Meta Debugger |
-| GA4 події не відстежувались | GA4 — порожні звіти по scroll та clicks | Прогалина в аналітиці | S | Analytics | **Done ✅** | 6 подій активні у DebugView |
-| Категорійні сторінки без унікального intro-тексту | Код — тільки H1 і список статей | Тонкий контент → погана індексація | M | Frontend + Content | 2026-05-10 | Кожна категорія має intro 80–150 слів |
-| Відсутній пошук на фронтенді (`/search`) | `project-spec.md:100` — не реалізовано | Bounce при пошуку контенту | M | Frontend | 2026-05-15 | Пошук у navbar, сторінка `/search` |
+| GA4 події не відстежувались | GA4 — порожні звіти по scroll, CTA, search і lead interactions | Прогалина в аналітиці | S | Analytics | **Done ✅** | 10 подій реалізовані в коді, DebugView використовується для перевірки |
+| Категорійні сторінки без унікального intro-тексту | Код — тільки H1 і список статей | Тонкий контент → погана індексація | M | Frontend + Content | **Done ✅** | Для ключових категорій додано intro 80–150 слів у frontend |
+| Відсутній пошук на фронтенді (`/search`) | `project-spec.md:100` — не реалізовано | Bounce при пошуку контенту | M | Frontend | **Done ✅** | Пошук у navbar, сторінка `/search`, event `view_search_results` |
+| Не було lead/trust-форми для цільової мікроконверсії | `/about` — відсутній контактний сценарій | Не можна виміряти form intent і generate_lead | M | Frontend | **Done ✅** | Додано форму, події `form_start`, `generate_lead`, `form_submit` |
 | Стаття `why-ipz-is-the-best` < 400 слів | Lighthouse + scroll_75 = 22% | Pogo-sticking, dwell 0:52 | M | Content | 2026-05-08 | 800+ слів, dwell > 1:30 |
 | GSC: CTR 1.9% при 720 показах для `блог про програмування` | GSC Export квітень 2026 | +30–50 кліків/міс після оптимізації | S | SEO + Content | 2026-05-10 | CTR +0.7 п.п., позиція < 15 |
 | Категорії `tools` і `gadgets` мають 1–2 статті | Ручна перевірка БД | Тонкий контент → ризик low-quality | M | Content | 2026-05-20 | ≥ 5 статей у кожній категорії |
 | E-E-A-T: сторінки авторів без bio/аватара | `/authors/*` — мінімальний контент | Слабший E-E-A-T сигнал | M | Content | 2026-05-12 | Bio 80+ слів + аватар для кожного автора |
-| `/about` без фото команди та trust-сигналів | Ручна перевірка — тільки текст | Низька довіра, bounce 57% | M | Content | 2026-05-20 | Фото + посилання на профілі + CTA |
+| `/about` потребував посилення trust-сигналів | Раніше сторінка була переважно текстовою | Низька довіра, bounce 57% | M | Content | **Done ✅** | Фото команди, ролі та посилання на профілі додано |
 
 ---
 
@@ -271,17 +284,17 @@ export function trackEvent(name: string, params?: Record<string, unknown>) {
 | # | Задача | Результат (було → стало) |
 |---|--------|--------------------------|
 | QW-1 | Meta title категорій: slug → людська назва | "Категорія: ai-ml" → "Штучний інтелект та ML — статті ІПЗ-педії" |
-| QW-2 | CTA у hero-блоці головної | 0 CTA → 4 кнопки категорій; `click_cta_primary` = 34% сесій |
+| QW-2 | CTA у hero-блоці головної | 0 CTA → 4 кнопки категорій; `click_cta_primary` реалізовано в коді |
 | QW-3 | Mobile tap target "Меню" | 32px height → `min-height: 44px; min-width: 44px` |
 | QW-4 | OG image для категорій | відсутній → favicon.png як default OG image |
-| QW-5 | GA4 події (6 шт.) у коді | 0 подій → 6 активних: scroll_75, read_complete, cta, related, author, category |
+| QW-5 | GA4 події у коді | 0 подій → 10 активних: scroll_75, read_complete, cta, related, author, category, search, form_start, lead, form_submit |
 
 **Strategic (High Impact + High Effort):**
 
 | # | Задача | ETA |
 |---|--------|-----|
-| S-1 | Category descriptions у БД + UI | 2026-05-10 |
-| S-2 | Реалізувати `/search` | 2026-05-15 |
+| S-1 | Category descriptions у БД (після frontend intro-text fix) | 2026-05-10 |
+| S-2 | Поглибити `/search`: додати search suggestions і search submit analytics | 2026-05-15 |
 | S-3 | Наповнити малі категорії (5+ статей) | 2026-05-20 |
 
 **Fill-ins (Low Impact + Low Effort):**
@@ -306,7 +319,7 @@ export function trackEvent(name: string, params?: Record<string, unknown>) {
 | Період | Ціль | Ключові задачі | KPI | Ризики |
 |--------|------|----------------|-----|--------|
 | Day 1-30 (Квітень–Травень 2026) | Усунути quick wins, запустити аналітику | QW-1..5 (виконано), GA4 DebugView активний, розширення статті `why-ipz-is-the-best`, title/desc для топ-3 статей | CTR +0.5 п.п. на категоріях; `scroll_75` ≥ 50%; `article_read_complete` > 10/тиждень | Малий обсяг даних ускладнює валідацію |
-| Day 31-60 (Травень–Червень 2026) | Усунути тонкий контент, реалізувати пошук | Category descriptions (S-1), `/search` (S-2), 3–5 нових статей у `tools`/`gadgets`, `/about` оновити | Organic sessions +25% MoM; avg position < 14 для топ-5 non-brand; `article_read_complete` > 20/тиждень | Обмеженість часу команди |
+| Day 31-60 (Травень–Червень 2026) | Усунути тонкий контент, розвинути пошук і lead-сценарії | Category descriptions (S-1), поглиблення `/search` (S-2), 3–5 нових статей у `tools`/`gadgets`, оптимізація lead-form UX | Organic sessions +25% MoM; avg position < 14 для топ-5 non-brand; `article_read_complete` > 20/тиждень | Обмеженість часу команди |
 | Day 61-90 (Червень–Липень 2026) | Топ-10 за 3+ non-brand запитами | Оптимізація title/desc для 5 статей із найбільшими показами, перші backlinks (GitHub, ЧНУ), Looker Studio дашборд | Позиція < 10 для `блог про програмування українською`; CTR ≥ 4% для топ запитів | Алгоритмічні зміни; конкуренція |
 
 ---
@@ -316,8 +329,8 @@ export function trackEvent(name: string, params?: Record<string, unknown>) {
 **Топ-5 проблем, що стримували SEO (до цієї лаби):**
 
 1. **Неправильні meta title категорій** — Google показував "Категорія: ai-ml" замість людської назви — прямий вплив на CTR сніпета. **Виправлено (QW-1).**
-2. **Відсутність аналітики** — без GA4 подій неможливо було зрозуміти, чи користувачі читають статті, клікають на CTA, переходять між сторінками. **Виправлено (QW-5, 6 подій).**
-3. **Тонкий контент на категорійних сторінках** — шаблонні сторінки без intro-тексту не несуть цінності для пошукового робота. Стратегічна задача S-1.
+2. **Відсутність аналітики** — без GA4 подій неможливо було зрозуміти, чи користувачі читають статті, клікають на CTA, користуються пошуком і доходять до lead-сценарію. **Виправлено (QW-5, 10 подій).**
+3. **Тонкий контент на категорійних сторінках** — шаблонні сторінки без intro-тексту несли мало цінності для пошукового робота. Базові intro-тексти вже додано; наступний крок — винести їх у БД (S-1).
 4. **Відсутність CTA на головній** — нові відвідувачі не знали куди йти, що підвищувало bounce. **Виправлено (QW-2).**
 5. **Мобільний UX** — кнопка "Меню" менша за мінімум 44px, що погіршувало mobile engagement. **Виправлено (QW-3).**
 
@@ -325,14 +338,14 @@ export function trackEvent(name: string, params?: Record<string, unknown>) {
 
 1. **QW-1: Meta title категорій** — вже впроваджено. Ефект видно через 2–3 тижні у GSC.
 2. **Title/description для 3 статей з найбільшими показами** — 1 день роботи, +40–80 кліків/міс при виході в топ-10.
-3. **Category descriptions (S-1)** — 2–3 дні, прямий вплив на індексацію і engagement категорій.
+3. **Category descriptions у БД (S-1)** — 2–3 дні, прямий вплив на індексацію і engagement категорій після вже внесених frontend intro-текстів.
 
 **Зміни, що потребують 60–90 днів:**
 
-- Реалізація `/search` — frontend + backend + UX
+- Поглиблення `/search` — suggestions, submit analytics, refinement пошуку
 - Наповнення малих категорій (tools, gadgets) — контент-план
 - Отримання перших 3–5 backlinks (ЧНУ, GitHub, DOU)
-- E-E-A-T: фото авторів + `/about` редизайн
+- E-E-A-T: поглиблення авторських профілів і подальше посилення `/about`
 
 **KPI для регулярного контролю:**
 
@@ -418,7 +431,7 @@ Brand/non-brand: brand-трафік відображає впізнаваніс�
 
 1. Category descriptions (High/M) — усуває тонкий контент на 6 сторінках одразу
 2. Title/description оптимізація для топ-3 статей (High/S) — +40–80 кліків/міс
-3. Реалізація `/search` (High/M) — покращує UX і crawlability
+3. Поглиблення `/search` (High/M) — покращує UX і crawlability
 4. E-E-A-T: author pages + about (Medium/M) — довгострокова довіра
 5. Внутрішнє linking між категоріями (Medium/S) — кращий PageRank flow
 
@@ -434,7 +447,7 @@ Brand/non-brand: brand-трафік відображає впізнаваніс�
 
 **13. Як довести бізнесу ефект від UX-оптимізації без зміни позицій?**
 
-Після QW-2 (CTA у hero) `click_cta_primary` зріс з 0% до 34% сесій — навіть при тих самих позиціях
+Після QW-2 (CTA у hero) подія `click_cta_primary` винесена в окремий event і може використовуватись для наступного вимірювання ефекту — навіть при тих самих позиціях
 більше трафіку доходить до контенту. Після QW-1 (meta title) CTR на категоріях очікується +0.5–0.8 п.п.,
 що при 720 показах = +3–6 кліків/тиждень = +12–24 кліків/місяць. Google враховує engagement як сигнал
 якості — покращений dwell формує підґрунтя для майбутнього зростання позицій.
