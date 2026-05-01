@@ -63,7 +63,7 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 
 | URL | Match Title/H1/intent | Чітка цінність 3-5 с | Помітний CTA | Елементи довіри | Mobile UX | Висновок |
 |-----|-----------------------|----------------------|--------------|-----------------|-----------|----------|
-| `/` | Частково — H1 є, підзаголовок розмитий | Так (після QW-2) — додано швидкі CTA у категорії | Так (після QW-2) | Слабко — тільки назва блогу | ⚠ Кнопка "Меню" < 44px (до QW-3) | QW-2 і QW-3 впроваджено |
+| `/` | Частково — H1 є, підзаголовок розмитий | Так (після QW-2) — додано швидкі CTA у категорії | Так (після QW-2) | Слабко — тільки назва блогу | Кнопка "Меню" < 44px (до QW-3) | QW-2 і QW-3 впроваджено |
 | `/articles/y2k-windows-style-review` | Так — H1 збігається з title | Так — cover image + H1 одразу | Слабо — лише related внизу | Є автор, дата, перегляди | OK | Потрібен CTA після статті |
 | `/articles/javascript-promises-explained` | Так — H1 чіткий і технічний | Так | Ні — немає CTA | Є автор і дата | OK | Додати CTA до related |
 | `/categories/programming` | Так — є H1 і пояснювальний intro | Частково | Ні | Ні | OK | Intro-текст додано, далі міряти engagement |
@@ -134,7 +134,7 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 | `/articles/javascript-promises-explained` | 35 | 22 | 62.9% | 00:02:12 | `scroll_75` (54%), `click_related_article` (14%) | Хороший контент, мало переходів |
 | `/articles/docker-basics-for-developers` | 22 | 13 | 59.1% | 00:01:54 | `scroll_75` (48%) | Середній engagement |
 | `/articles/y2k-windows-style-review` | 28 | 15 | 53.6% | 00:01:42 | `scroll_75` (41%), `click_related_article` (11%) | Нішева аудиторія читає |
-| `/articles/why-ipz-is-the-best` | 19 | 9 | 47.4% | 00:00:52 | `scroll_75` (22%) | ⚠ Короткий dwell — треба розширити контент |
+| `/articles/why-ipz-is-the-best` | 19 | 9 | 47.4% | 00:00:52 | `scroll_75` (22%) | Короткий dwell — треба розширити контент |
 | `/categories/programming` | 24 | 11 | 45.8% | 00:00:48 | `view_category_page`, `click_article` (58%) | Intro вже додано, потрібен повторний замір |
 | `/about` | 14 | 6 | 42.9% | 00:00:36 | — | Trust-сигнали вже посилено, далі потрібен повторний замір |
 
@@ -145,7 +145,7 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 | URL | Тип intent | Bounce/engagement контекст | Dwell-патерн | Нормально чи ризик | Що робити |
 |-----|------------|----------------------------|--------------|--------------------|-----------|
 | `/articles/ai-tools-for-programmers-2025` | Інформаційний | 68% engaged, `scroll_75` у 62% | Довгий (2:48) | Нормально | Додати CTA після статті |
-| `/articles/why-ipz-is-the-best` | Інформаційний | 47% engaged, `scroll_75` лише 22% | Короткий (0:52) | ⚠ Ризик pogo-sticking | Розширити контент до 800+ слів |
+| `/articles/why-ipz-is-the-best` | Інформаційний | 47% engaged, `scroll_75` лише 22% | Короткий (0:52) | Ризик pogo-sticking | Розширити контент до 800+ слів |
 | `/categories/programming` | Навігаційний | Bounce high, але 58% кликають статтю | Дуже короткий (0:48) | Нормально для nav intent | Intro-текст уже додано, потрібен повторний замір |
 | `/` | Навігаційний / TOFU | 62% engaged, CTA на категорії винесено у first screen | Середній (1:15) | Нормально | CTA впроваджено — моніторити `click_cta_primary` |
 | `/about` | Навігаційний | 43% engaged, bounce 57% | Дуже короткий (0:36) | Помірний ризик, але trust-сигнали вже посилено | Спостерігати після оновлення сторінки |
@@ -205,16 +205,16 @@ GSC/GA4 дані за 28 днів квітня 2026 використано як 
 
 | Event name | Де реалізовано | Параметри | Бізнес/SEO сенс | DebugView |
 |------------|----------------|-----------|------------------|----|
-| `scroll_75` | `ArticleTracker.tsx` — scroll listener ≥ 75% | `article_slug`, `category` | Підтверджує якість контенту | ✅ видно з параметрами |
-| `article_read_complete` | `ArticleTracker.tsx` — scroll ≥ 90% + час ≥ 60s | `article_slug`, `category`, `read_time_s` | Найсильніший сигнал завершеного читання | ✅ видно з `read_time_s` |
-| `click_cta_primary` | `HomeCTA.tsx` — onClick на кнопках категорій | `page_type`, `cta_label`, `destination_category` | Чи рухається користувач до цілі з home | ✅ реалізовано, перевіряється через DebugView |
-| `click_related_article` | `RelatedArticles.tsx` — onClick на посиланнях | `from_slug`, `related_slug`, `category` | Глибина сесії після читання | ✅ видно з `related_slug` |
-| `click_author_profile` | `ArticleAuthorBlock.tsx` — onClick на автора | `author_slug`, `article_slug` | E-E-A-T сигнал | ✅ видно з `author_slug` |
-| `view_category_page` | `CategoryPageTracker.tsx` — useEffect на mount | `category_slug`, `category_name` | Ефективність навігаційних сторінок | ✅ видно з `category_name` |
-| `view_search_results` | `SearchResultsTracker.tsx` — useEffect на `/search?q=...` | `search_term`, `results_count` | Чи використовують користувачі внутрішній пошук і чи знаходять контент | ✅ видно з `results_count` |
-| `form_start` | `LeadCaptureForm.tsx` — first focus у форму на `/about` | `form_name`, `page_type` | Ранній сигнал наміру взаємодії | ✅ видно з `form_name` |
-| `generate_lead` | `LeadCaptureForm.tsx` — submit форми інтересу | `form_name`, `page_type`, `has_message` | Основна lead-подія для trust/контактного сценарію | ✅ видно з `has_message` |
-| `form_submit` | `LeadCaptureForm.tsx` — submit форми | `form_name`, `page_type` | Технічне підтвердження завершення форми | ✅ видно з `form_name` |
+| `scroll_75` | `ArticleTracker.tsx` — scroll listener ≥ 75% | `article_slug`, `category` | Підтверджує якість контенту | видно з параметрами |
+| `article_read_complete` | `ArticleTracker.tsx` — scroll ≥ 90% + час ≥ 60s | `article_slug`, `category`, `read_time_s` | Найсильніший сигнал завершеного читання | видно з `read_time_s` |
+| `click_cta_primary` | `HomeCTA.tsx` — onClick на кнопках категорій | `page_type`, `cta_label`, `destination_category` | Чи рухається користувач до цілі з home | реалізовано, перевіряється через DebugView |
+| `click_related_article` | `RelatedArticles.tsx` — onClick на посиланнях | `from_slug`, `related_slug`, `category` | Глибина сесії після читання | видно з `related_slug` |
+| `click_author_profile` | `ArticleAuthorBlock.tsx` — onClick на автора | `author_slug`, `article_slug` | E-E-A-T сигнал | видно з `author_slug` |
+| `view_category_page` | `CategoryPageTracker.tsx` — useEffect на mount | `category_slug`, `category_name` | Ефективність навігаційних сторінок | видно з `category_name` |
+| `view_search_results` | `SearchResultsTracker.tsx` — useEffect на `/search?q=...` | `search_term`, `results_count` | Чи використовують користувачі внутрішній пошук і чи знаходять контент | видно з `results_count` |
+| `form_start` | `LeadCaptureForm.tsx` — first focus у форму на `/about` | `form_name`, `page_type` | Ранній сигнал наміру взаємодії | видно з `form_name` |
+| `generate_lead` | `LeadCaptureForm.tsx` — submit форми інтересу | `form_name`, `page_type`, `has_message` | Основна lead-подія для trust/контактного сценарію | видно з `has_message` |
+| `form_submit` | `LeadCaptureForm.tsx` — submit форми | `form_name`, `page_type` | Технічне підтвердження завершення форми | видно з `form_name` |
 
 **Доказ DebugView:**
 
@@ -268,19 +268,19 @@ export function trackEvent(name: string, params?: Record<string, unknown>) {
 
 | Issue | Evidence | Impact | Effort | Owner | Deadline | Success criteria |
 |-------|----------|--------|--------|-------|----------|------------------|
-| Мета-теги категорій використовували технічний slug | Код `generateMetadata` у `/categories/[slug]/page.tsx` | CTR на категоріях +0.5–0.8 п.п. | S | Frontend | **Done ✅** | Title відображає людську назву |
-| Відсутній CTA у hero-блоці | `page.tsx` — тільки заголовок без дії | Engagement rate головної +10 п.п. | S | Frontend | **Done ✅** | Категорійні CTA додані у first screen, `click_cta_primary` збирається |
-| Mobile tap target "Меню" < 44px | DevTools — height 32px | Mobile UX / Lighthouse Accessibility | S | Frontend | **Done ✅** | Tap target ≥ 44px |
-| `og:image` відсутній на категоріях | Meta Debugger — немає OG image | CTR із соцмереж / шеринг | S | Frontend | **Done ✅** | OG image видно в Meta Debugger |
-| GA4 події не відстежувались | GA4 — порожні звіти по scroll, CTA, search і lead interactions | Прогалина в аналітиці | S | Analytics | **Done ✅** | 10 подій реалізовані в коді, DebugView використовується для перевірки |
-| Категорійні сторінки без унікального intro-тексту | Код — тільки H1 і список статей | Тонкий контент → погана індексація | M | Frontend + Content | **Done ✅** | Для ключових категорій додано intro 80–150 слів у frontend |
-| Відсутній пошук на фронтенді (`/search`) | `project-spec.md:100` — не реалізовано | Bounce при пошуку контенту | M | Frontend | **Done ✅** | Пошук у navbar, сторінка `/search`, event `view_search_results` |
-| Не було lead/trust-форми для цільової мікроконверсії | `/about` — відсутній контактний сценарій | Не можна виміряти form intent і generate_lead | M | Frontend | **Done ✅** | Додано форму, події `form_start`, `generate_lead`, `form_submit` |
+| Мета-теги категорій використовували технічний slug | Код `generateMetadata` у `/categories/[slug]/page.tsx` | CTR на категоріях +0.5–0.8 п.п. | S | Frontend | **Done** | Title відображає людську назву |
+| Відсутній CTA у hero-блоці | `page.tsx` — тільки заголовок без дії | Engagement rate головної +10 п.п. | S | Frontend | **Done** | Категорійні CTA додані у first screen, `click_cta_primary` збирається |
+| Mobile tap target "Меню" < 44px | DevTools — height 32px | Mobile UX / Lighthouse Accessibility | S | Frontend | **Done** | Tap target ≥ 44px |
+| `og:image` відсутній на категоріях | Meta Debugger — немає OG image | CTR із соцмереж / шеринг | S | Frontend | **Done** | OG image видно в Meta Debugger |
+| GA4 події не відстежувались | GA4 — порожні звіти по scroll, CTA, search і lead interactions | Прогалина в аналітиці | S | Analytics | **Done** | 10 подій реалізовані в коді, DebugView використовується для перевірки |
+| Категорійні сторінки без унікального intro-тексту | Код — тільки H1 і список статей | Тонкий контент → погана індексація | M | Frontend + Content | **Done** | Для ключових категорій додано intro 80–150 слів у frontend |
+| Відсутній пошук на фронтенді (`/search`) | `project-spec.md:100` — не реалізовано | Bounce при пошуку контенту | M | Frontend | **Done** | Пошук у navbar, сторінка `/search`, event `view_search_results` |
+| Не було lead/trust-форми для цільової мікроконверсії | `/about` — відсутній контактний сценарій | Не можна виміряти form intent і generate_lead | M | Frontend | **Done** | Додано форму, події `form_start`, `generate_lead`, `form_submit` |
 | Стаття `why-ipz-is-the-best` < 400 слів | Lighthouse + scroll_75 = 22% | Pogo-sticking, dwell 0:52 | M | Content | 2026-05-08 | 800+ слів, dwell > 1:30 |
 | GSC: CTR 1.9% при 720 показах для `блог про програмування` | GSC Export квітень 2026 | +30–50 кліків/міс після оптимізації | S | SEO + Content | 2026-05-10 | CTR +0.7 п.п., позиція < 15 |
 | Категорії `tools` і `gadgets` мають 1–2 статті | Ручна перевірка БД | Тонкий контент → ризик low-quality | M | Content | 2026-05-20 | ≥ 5 статей у кожній категорії |
 | E-E-A-T: сторінки авторів без bio/аватара | `/authors/*` — мінімальний контент | Слабший E-E-A-T сигнал | M | Content | 2026-05-12 | Bio 80+ слів + аватар для кожного автора |
-| `/about` потребував посилення trust-сигналів | Раніше сторінка була переважно текстовою | Низька довіра, bounce 57% | M | Content | **Done ✅** | Фото команди, ролі та посилання на профілі додано |
+| `/about` потребував посилення trust-сигналів | Раніше сторінка була переважно текстовою | Низька довіра, bounce 57% | M | Content | **Done** | Фото команди, ролі та посилання на профілі додано |
 
 ---
 
